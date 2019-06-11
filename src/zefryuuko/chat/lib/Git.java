@@ -46,7 +46,7 @@ public class Git
         logging.log("Pulling from remote");
         String command = "git pull";
         String output = Utilities.runSystemCommand(command, this.fullDir);
-        output = output.substring(0, output.length() - 2);
+        output = output.substring(0, (output.length() >= 2 ? output.length() - 2 : 0));
         for (String o : output.split("\n"))
         {
             logging.log(o);
