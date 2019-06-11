@@ -23,7 +23,7 @@ public class GitNotificationRoutine implements RoutineInterface
                                             changesData.get("author"), changesData.get("summary"));
             ChatData chatData = new ChatData("Git", message);
             Main.getServer().broadcast(Utilities.objSerialize(chatData));
-            logging.log("Broadcasted repo changes.");
+            logging.log("Broadcasted latest repo change.");
             return;
         }
         logging.log("No changes has been done.");
