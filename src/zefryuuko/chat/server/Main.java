@@ -36,4 +36,9 @@ public class Main
     {
         return connectedUsers;
     }
+
+    public static Git getGit()
+    {
+        return git;
+    }
 }
