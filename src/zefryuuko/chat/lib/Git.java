@@ -1,5 +1,7 @@
 package zefryuuko.chat.lib;
 
+import java.util.HashMap;
+
 public class Git
 {
     private Logging logging;
@@ -64,6 +66,21 @@ public class Git
             this.latestCommit = commandOutput;
             return true;
         }
+    }
+
+    public HashMap<String, String> getLatestCommitData()
+    {
+        logging.log("Getting latest commit data");
+        HashMap<String, String> output = new HashMap();
+
+        String command = "git show -p origin/master";
+        System.out.println(Utilities.runSystemCommand(command, fullDir));
+        String[] commandOutput = Utilities.runSystemCommand(command, fullDir).split("\n");
+
+        output.put("author", commandOutput[1].substring(8, commandOutput[1].indexOf("<") - 1));
+        output.put("summary", commandOutput[4].replaceAll("    ", ""));
+
+        return output;
     }
 
     private void cloneRemote()
