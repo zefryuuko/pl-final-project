@@ -10,7 +10,7 @@ public class Main
     private static HashMap<String, String> connectedUsers;
     private static Server server;
     private static String serverPassword = "test";
-    private static String repoAddress = "https://github.com/zefryuuko/useless-repository.git"
+    private static String repoAddress = "https://github.com/zefryuuko/useless-repository.git";
     private static Git git;
 
     public static void main(String[] args) throws InterruptedException
