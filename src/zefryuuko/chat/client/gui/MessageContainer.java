@@ -8,6 +8,7 @@ public class MessageContainer extends JPanel
     private GridBagConstraints c = new GridBagConstraints();
     private JLabel lblUsername = new JLabel();
     private JTextPane txtMessage = new JTextPane();
+    private String txtMessageCSS = "body{color:#ffffff;font-family:'Helvetica Neue', sans-serif;font-size:10px;}";
 
     public MessageContainer(String username, String message)
     {
@@ -21,7 +22,8 @@ public class MessageContainer extends JPanel
         lblUsername.setForeground(Color.WHITE);
         lblUsername.setFont(new Font("Helvetica Neue", Font.BOLD, 15));
         txtMessage.setEditable(false);
-        txtMessage.setText(message);
+        txtMessage.setContentType("text/html");
+        txtMessage.setText("<html><style>" + txtMessageCSS + "</style><body>" + message + "</body></html>");
         txtMessage.setForeground(new Color(215, 216, 217));
         txtMessage.setBackground(new Color(54, 57, 62));
         txtMessage.setBorder(null);
