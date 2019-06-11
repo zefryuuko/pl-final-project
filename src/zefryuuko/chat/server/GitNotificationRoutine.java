@@ -18,7 +18,7 @@ public class GitNotificationRoutine implements RoutineInterface
         if (Main.getGit().checkLatestCommit())
         {
             HashMap changesData = Main.getGit().getLatestCommitData();
-            String message = String.format("%s made changes to the repository.\nLatest commit summary: %s",
+            String message = String.format("[noescape]%s made changes to the repository.<div class='container'>%s</div>[/noescape]",
                                             changesData.get("author"), changesData.get("summary"));
             ChatData chatData = new ChatData("Git", message);
             Main.getServer().broadcast(Utilities.objSerialize(chatData));
