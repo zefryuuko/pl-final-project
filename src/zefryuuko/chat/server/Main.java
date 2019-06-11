@@ -13,7 +13,7 @@ public class Main
     private static String repoAddress = "https://github.com/zefryuuko/useless-repository.git";
     private static Git git;
 
-    public static void main(String[] args) throws InterruptedException
+    public static void main(String[] args)
     {
         Utilities.makeDir("appdata/repofiles");
         git = new Git(repoAddress);
