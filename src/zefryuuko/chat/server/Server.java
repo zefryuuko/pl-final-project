@@ -69,14 +69,16 @@ public class Server extends Thread
 
     public void broadcast(String message)
     {
-        for (Iterator<String> itr = Main.getServer().getConnections().keySet().iterator(); itr.hasNext(); )
+        HashMap<String, ServerConnection> connections = new HashMap(this.connections);
+        for (Iterator<String> itr = connections.keySet().iterator(); itr.hasNext(); )
         {
             String sessionID = itr.next();
 
-            Main.getServer().getConnections().get(sessionID).sendString(message);       // Send data to client
-            if (!Main.getServer().getConnections().get(sessionID).isRunning())          // Delete connection if the connection is lost
+            connections.get(sessionID).sendString(message);       // Send data to client
+            if (!connections.get(sessionID).isRunning())          // Delete connection if the connection is lost
             {
                 itr.remove();
+                this.connections.remove(sessionID);
                 Main.getConnectedUsers().remove(sessionID);
                 RequestRouter.broadcastConnectedUsers();
             }
