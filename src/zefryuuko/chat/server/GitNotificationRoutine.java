@@ -1,6 +1,5 @@
 package zefryuuko.chat.server;
 
-import sun.rmi.runtime.Log;
 import zefryuuko.chat.commdata.ChatData;
 import zefryuuko.chat.lib.Logging;
 import zefryuuko.chat.lib.RoutineInterface;
