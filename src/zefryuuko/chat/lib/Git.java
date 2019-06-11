@@ -88,7 +88,6 @@ public class Git
         logging.log("Cloning " + repoAddress + " to " + fullDir);
         String command = String.format("git clone %s %s", repoAddress, currentRepoDir);
         String output = Utilities.runSystemCommand(command, reposDir);
-        String[] outputSliced = output.split("\n");
         logging.log("Clone command ran successfully.");
     }
 
