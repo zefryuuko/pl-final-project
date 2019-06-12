@@ -1,5 +1,8 @@
 package zefryuuko.chat.client;
 
+import zefryuuko.chat.commdata.RequestData;
+import zefryuuko.chat.lib.Utilities;
+
 public class Main
 {
     private static Client client;
@@ -12,6 +15,19 @@ public class Main
         window.setVisible(true);
 //        client = new Client("localhost", 5550);
 //        client.run();
+
+        Runtime.getRuntime().addShutdownHook(new Thread()
+        {
+            @Override
+            public void run()
+            {
+                if (client.isRunning())
+                {
+                    RequestData disconnectRequest = new RequestData("clientDisconnect");
+                    client.sendString(Utilities.objSerialize(disconnectRequest));
+                }
+            }
+        });
     }
 
     public static Client getClient()
