@@ -11,7 +11,11 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
 public class ConnectPanel extends JPanel
 {
@@ -30,6 +34,8 @@ public class ConnectPanel extends JPanel
     private JScrollPane spaneSavedLogin = new JScrollPane();
     private JTable tblSavedLogin = new JTable();
     private String[] tblSavedLoginColumns = new String[] {"Host", "Username"};
+    private String[][] savedLoginData;
+    private String[][] savedLoginDataTbl;
     private int connectionStatus = 0;
 
     public ConnectPanel()
@@ -68,7 +74,9 @@ public class ConnectPanel extends JPanel
 //        spaneSavedLogin.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         spaneSavedLogin.getViewport().setBackground(new Color(44, 47, 51));
         spaneSavedLogin.setBorder(null);
-        tblSavedLogin = new JTable(new String[][] {{"localhost", "zefryuuko"}, {"zefryuuko.ga", "zefryuuko_"}}, tblSavedLoginColumns);
+        savedLoginData = getSavedLogins();
+        savedLoginDataTbl = getSavedLoginTableData(savedLoginData);
+        tblSavedLogin = new JTable(savedLoginDataTbl, tblSavedLoginColumns);
         tblSavedLogin.setBackground(new Color(44, 47, 51));
         tblSavedLogin.setForeground(Color.WHITE);
         tblSavedLogin.getTableHeader().setBackground(new Color(44, 47, 51));
@@ -137,6 +145,56 @@ public class ConnectPanel extends JPanel
             return false;
         }
         return true;
+    }
+
+    private String[][] getSavedLogins()
+    {
+        String[][] output = {};
+
+        // Detect appdata/saved-logins folder
+        if (!Utilities.dirExists("appdata/saved-logins"))
+        {
+            Utilities.makeDir("appdata/saved-logins");
+            return output;
+        }
+
+        File[] loginFiles = Utilities.listFiles("appdata/saved-logins", ".properties");
+        output = new String[loginFiles.length][3];
+        for (int i = 0; i < loginFiles.length; i++)
+        {
+            File loginFile = loginFiles[i];
+            Properties login = new Properties();
+            try
+            {
+                InputStream inputStream = new FileInputStream(loginFile);
+                if (inputStream == null) continue;
+                login.load(inputStream);
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+                continue;
+            }
+
+            String host_addr = login.getProperty("host_address");
+            String host_pass = login.getProperty("host_password");
+            String client_usr = login.getProperty("client_username");
+            output[i] = new String[] {host_addr, host_pass, client_usr};
+        }
+
+        return output;
+    }
+
+    private String[][] getSavedLoginTableData(String[][] data)
+    {
+        String[][] newData = new String[data.length][2];
+
+        for (int i = 0; i < data.length; i++)
+        {
+            newData[i] = new String[] {data[i][0], data[i][2]};
+        }
+
+        return newData;
     }
 
     private class btnConnectActionlistener  implements ActionListener
@@ -217,8 +275,10 @@ public class ConnectPanel extends JPanel
         {
             String host = tblSavedLogin.getValueAt(tblSavedLogin.getSelectedRow(), 0).toString();
             String username = tblSavedLogin.getValueAt(tblSavedLogin.getSelectedRow(), 1).toString();
+            String password = savedLoginData[tblSavedLogin.getSelectedRow()][1];
             txtServerAddress.setText(host);
             txtUsername.setText(username);
+            passServerPassword.setText(password);
         }
     }
 
