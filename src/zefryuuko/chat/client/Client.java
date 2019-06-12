@@ -39,4 +39,9 @@ public class Client
         clientConnection.setRunning(false);
         logging.log("Client thread stopped");
     }
+
+    public boolean isRunning()
+    {
+        return clientConnection.isRunning();
+    }
 }

@@ -83,4 +83,9 @@ public class ClientConnection extends Thread
     {
         isRunning = running;
     }
+
+    public boolean isRunning()
+    {
+        return isRunning;
+    }
 }
