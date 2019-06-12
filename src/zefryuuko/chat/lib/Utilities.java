@@ -118,6 +118,16 @@ public class Utilities
         }
         return true;
     }
+
+    public static File[] listFiles(String directory, String extension)
+    {
+        File folder = new File(directory);
+        FilenameFilter fileNameFilter = (File dir, String name) ->
+        {
+                return name.endsWith(extension);
+        };
+        return folder.listFiles(fileNameFilter);
+    }
 }
 
 // References
