@@ -16,7 +16,7 @@ public class RequestRouter
         switch(dataType)
         {
             case "RequestData":
-                response = getRequestDataResponse((RequestData) commData);
+                response = getRequestDataResponse((RequestData) commData, sessionID);
                 break;
             case "ChatData":
                 broadcastChat((ChatData) commData);
@@ -29,14 +29,18 @@ public class RequestRouter
         return response;
     }
 
-    private static CommData getRequestDataResponse(RequestData requestData)
+    private static CommData getRequestDataResponse(RequestData requestData, String sessionID)
     {
-        CommData response = null;
+        CommData response = new CommData("NullResponse");
 
         switch(requestData.getRequest())
         {
             case "getConnectedUserData":
                 response = new ConnectedUserData(new ArrayList<String>(Main.getConnectedUsers().values()));
+                break;
+            case "clientDisconnect":
+                Main.getConnectedUsers().remove(sessionID);
+                broadcastConnectedUsers();
                 break;
         }
 
