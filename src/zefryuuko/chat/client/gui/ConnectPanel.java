@@ -27,6 +27,7 @@ public class ConnectPanel extends JPanel
     private JPasswordField passServerPassword = new JPasswordField();
     private JTextField txtUsername = new JTextField();
     private JButton btnAddToList = new JButton();
+    private JButton btnRemoveFromList = new JButton();
     private JButton btnConnect = new JButton();
     private JPanel pnlSavedLogin = new JPanel();
     private JLabel lblSavedLogin = new JLabel();
@@ -65,6 +66,9 @@ public class ConnectPanel extends JPanel
         btnConnect.addActionListener(new btnConnectActionlistener());
         btnAddToList.setText("Save to list");
         btnAddToList.addActionListener(e -> saveLoginInfo());
+        btnRemoveFromList.setText("Remove from list");
+        btnRemoveFromList.addActionListener(e -> removeLoginInfo());
+        btnRemoveFromList.setEnabled(false);
         pnlSavedLogin.setPreferredSize(new Dimension(400, 100));
         pnlSavedLogin.setLayout(new GridBagLayout());
         pnlSavedLogin.setBackground(new Color(44, 47, 51));
@@ -92,7 +96,8 @@ public class ConnectPanel extends JPanel
         pnlConnectionInfo.add(txtUsername, c); c.gridy++;
         c.insets = new Insets(0,15,15,15);
         pnlConnectionInfo.add(btnConnect, c); c.gridx++;
-        pnlConnectionInfo.add(btnAddToList, c);
+        pnlConnectionInfo.add(btnAddToList, c); c.gridx++;
+        pnlConnectionInfo.add(btnRemoveFromList, c);
         // -- Saved login info
         c.gridx = c.gridy = 0;
         c.insets = new Insets(0,0,5,0);
@@ -188,6 +193,19 @@ public class ConnectPanel extends JPanel
             JOptionPane.showMessageDialog(null, "Failed to save login info.\nDetails: " + e, "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
+    }
+
+    private void removeLoginInfo()
+    {
+        int index = tblSavedLogin.getSelectedRow();
+        String pathToRemove = String.format("appdata/saved-logins/%s@%s.properties", savedLoginDataTbl[index][1], savedLoginDataTbl[index][0]);
+        if (Utilities.fileExists(pathToRemove))
+        {
+            Utilities.deleteFile(pathToRemove);
+            generateTable();
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Failed to delete login info.\nDetails: " + pathToRemove + " not found.", "Error", JOptionPane.ERROR_MESSAGE);
     }
 
     private String[][] getSavedLogins()
@@ -322,6 +340,7 @@ public class ConnectPanel extends JPanel
             txtServerAddress.setText(host);
             txtUsername.setText(username);
             passServerPassword.setText(password);
+            btnRemoveFromList.setEnabled(true);
         }
     }
 
