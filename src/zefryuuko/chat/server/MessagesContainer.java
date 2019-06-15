@@ -3,10 +3,7 @@ package zefryuuko.chat.server;
 import zefryuuko.chat.commdata.ChatData;
 import zefryuuko.chat.lib.Utilities;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Serializable;
+import java.io.*;
 import java.util.LinkedList;
 
 public class MessagesContainer
@@ -17,7 +14,10 @@ public class MessagesContainer
     public MessagesContainer(int limit)
     {
         this.limit = limit;
-        this.messages = new LinkedList();
+        if (Utilities.fileExists("appdata/saved-messages.msgcontainer"))
+            loadMessagesFile();
+        else
+            this.messages = new LinkedList();
     }
 
     public void addMessage(ChatData chatData)
@@ -30,6 +30,21 @@ public class MessagesContainer
     public LinkedList<ChatData> getMessages()
     {
         return messages;
+    }
+
+    private void loadMessagesFile())
+    {
+        try
+        {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("appdata/saved-messages.msgcontainer"));
+            String data = "";
+            while ((data += bufferedReader.readLine()) != null);
+            this.messages = (LinkedList<ChatData>) Utilities.objDeserialize(data);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     private void saveToFile()
