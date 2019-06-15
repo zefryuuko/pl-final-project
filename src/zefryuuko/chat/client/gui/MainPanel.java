@@ -116,6 +116,8 @@ public class MainPanel extends JPanel
             spaneMessagesContainer.addMessage(messageContainer);
         }
         spaneMessagesContainer.revalidate();
+        spaneMessagesContainer.getVerticalScrollBar().setValue(spaneMessagesContainer.getVerticalScrollBar().getMinimum());
+        spaneMessagesContainer.getVerticalScrollBar().setValue(spaneMessagesContainer.getVerticalScrollBar().getMaximum());
     }
 
     public void addMessage(ChatData chatData)
