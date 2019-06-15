@@ -2,6 +2,8 @@ package zefryuuko.chat.client;
 
 import zefryuuko.chat.commdata.*;
 
+import java.util.ArrayList;
+
 public class RequestRouter
 {
     public static CommData getResponse(CommData commData)
@@ -32,6 +34,23 @@ public class RequestRouter
                 break;
             case "MessagesData":
                 Main.getMainWindow().getMainPanel().populateMessages(((MessagesData) commData).getMessages());
+                break;
+            case "RequestData":
+                response = getRequestDataResponse((RequestData) commData);
+                break;
+        }
+
+        return response;
+    }
+
+    private static CommData getRequestDataResponse(RequestData requestData)
+    {
+        CommData response = new CommData("NullResponse");
+
+        switch(requestData.getRequest())
+        {
+            case "refreshGitClient":
+                Main.getMainWindow().getMainPanel().refreshGit();
                 break;
         }
 
