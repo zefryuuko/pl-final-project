@@ -41,7 +41,7 @@ public class TextViewerWindow extends JFrame
         txtTextView.setTextAreaBackground(new Color(44, 47, 51));
         txtTextView.setTextAreaForeground(Color.WHITE);
         txtTextView.setLineNumberingBackground(new Color(59, 63, 68));
-        
+        txtTextView.setEditable(false);
 
 
         // Content pane objects
