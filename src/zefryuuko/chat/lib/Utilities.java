@@ -94,6 +94,12 @@ public class Utilities
         return false;
     }
 
+    public static boolean deleteFile(String path)
+    {
+        File file = new File(path);
+        return file.delete();
+    }
+
     public static boolean dirExists(String path)
     {
         if (!Paths.get(path).toFile().isDirectory()) return false;
