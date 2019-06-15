@@ -21,6 +21,7 @@ public class MessageTextField extends JPanel
         // Panel properties
         this.setLayout(new GridBagLayout());
         this.c.gridx = this.c.gridy = 0;
+        this.setMinimumSize(new Dimension(45, 40));
         this.setPreferredSize(new Dimension(45, 40));
         this.c.insets = new Insets(5, 10, 5, 10);
         this.setBackground(new Color(66, 69, 73));
