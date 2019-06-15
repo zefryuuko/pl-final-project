@@ -124,4 +124,9 @@ public class LineNumberTextArea extends JPanel
     {
         lineNumbers.setForeground(c);
     }
+
+    public void setEditable(boolean b)
+    {
+        textArea.setEditable(b);
+    }
 }
