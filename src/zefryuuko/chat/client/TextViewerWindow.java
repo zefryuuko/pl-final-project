@@ -4,7 +4,6 @@ import zefryuuko.chat.client.gui.LineNumberTextArea;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.text.BadLocationException;
 import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -18,7 +17,6 @@ public class TextViewerWindow extends JFrame
     private JLabel lblFileName = new JLabel();
     private LineNumberTextArea txtTextView = new LineNumberTextArea();
     private JButton btnDiscussSelected = new JButton();
-    private GridBagConstraints c = new GridBagConstraints();
 
     public TextViewerWindow()
     {
