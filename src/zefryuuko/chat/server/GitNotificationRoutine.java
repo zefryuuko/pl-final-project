@@ -1,6 +1,7 @@
 package zefryuuko.chat.server;
 
 import zefryuuko.chat.commdata.ChatData;
+import zefryuuko.chat.commdata.RequestData;
 import zefryuuko.chat.lib.Logging;
 import zefryuuko.chat.lib.RoutineInterface;
 import zefryuuko.chat.lib.Utilities;
@@ -22,6 +23,8 @@ public class GitNotificationRoutine implements RoutineInterface
                                             changesData.get("author"), changesData.get("summary"));
             ChatData chatData = new ChatData("Git", message);
             Main.getServer().broadcast(Utilities.objSerialize(chatData));
+            RequestData refreshGitClient = new RequestData("refreshGitClient");
+            Main.getServer().broadcast(Utilities.objSerialize(refreshGitClient));
             logging.log("Broadcasted latest repo change.");
             return;
         }
