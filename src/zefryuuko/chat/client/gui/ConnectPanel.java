@@ -168,8 +168,9 @@ public class ConnectPanel extends JPanel
     private void saveLoginInfo()
     {
         if (!isValidInput()) return;
-        ArrayList<String> hosts = new ArrayList(Arrays.asList(savedLoginDataTbl[0]));
-        ArrayList<String> usernames = new ArrayList(Arrays.asList(savedLoginDataTbl[1]));
+        ArrayList<String> hosts = new ArrayList();
+        for (String[] hostUsernamePair : savedLoginDataTbl)
+            hosts.add(hostUsernamePair[0]);
         if (hosts.contains(txtServerAddress.getText()))
         {
             JOptionPane.showMessageDialog(null, "The host you want to save is already saved in the list.", "", JOptionPane.INFORMATION_MESSAGE);
