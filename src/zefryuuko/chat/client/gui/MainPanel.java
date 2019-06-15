@@ -5,6 +5,7 @@ import zefryuuko.chat.commdata.*;
 import zefryuuko.chat.lib.Utilities;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -13,6 +14,9 @@ public class MainPanel extends JPanel
     GridBagConstraints c = new GridBagConstraints();
     private JTextPane paneOnlineUsers = new JTextPane();
     private String paneOnlineUsersCSS = "body{background:#2c2f33;color:#ffffff;margin:0;padding:0 7px 0px 7px;font-family:'Helvetica Neue', Arial, serif;}h3.header{color:#666a71;}ul{list-style-type:none;padding:0;margin:0;}.user{width:100%;height:30px;background:#36393e;padding:5px;margin-bottom:5px;font-family:'Helvetica Neue', Arial, serif;text-align:left;.hidden{background:#2c2f33;height:1px;padding:0px;margin-bottom:0px;font-size:1px;}";
+    private JPanel pnlServerInfo = new JPanel();
+    private JLabel lblServerName = new JLabel();
+    private JLabel lblServerDescription = new JLabel();
     private MessagesContainer spaneMessagesContainer = new MessagesContainer();
     private MessageTextField txtMessage = new MessageTextField();
 
@@ -30,16 +34,34 @@ public class MainPanel extends JPanel
         paneOnlineUsers.setCaret(new NoTextSelectionCaret(paneOnlineUsers));
         paneOnlineUsers.setContentType("text/html");
         paneOnlineUsers.setText("<html><head><style>" + paneOnlineUsersCSS + "</style></head><body><h3 class='header'>ONLINE</h3><div class='container'></div></body></html>");
-
+        pnlServerInfo.setPreferredSize(new Dimension(10, 45));
+        pnlServerInfo.setBackground(new Color(48, 51, 56));
+        pnlServerInfo.setLayout(new BorderLayout());
+        pnlServerInfo.setBorder(new EmptyBorder(5, 15, 5, 15));
+        lblServerName.setText("Loading server name...");
+        lblServerName.setFont(new Font("Helvetica Neue", Font.BOLD, 16));
+        lblServerName.setForeground(Color.WHITE);
+        lblServerDescription.setText("Loading server description...");
+        lblServerDescription.setFont(new Font("Helvetica Neue", Font.PLAIN, 12));
+        lblServerDescription.setForeground(Color.LIGHT_GRAY);
 
         // Panel objects
-        c.gridheight = 2;
+        pnlServerInfo.add(lblServerName, BorderLayout.WEST);
+        pnlServerInfo.add(lblServerDescription, BorderLayout.SOUTH);
+        c.gridheight = 3;
         c.gridwidth = 1;
         c.weightx = 0;
         c.weighty = 1;
         c.fill = GridBagConstraints.BOTH;
         this.add(paneOnlineUsers, c);
         c.gridx++;
+        c.gridheight = 1;
+        c.gridwidth = 1;
+        c.weightx = 1;
+        c.weighty = 0;
+        c.fill = GridBagConstraints.BOTH;
+        this.add(pnlServerInfo, c);
+        c.gridy++;
         c.gridheight = 1;
         c.gridwidth = 1;
         c.weightx = 1;
@@ -57,8 +79,17 @@ public class MainPanel extends JPanel
 
     public void loadData()
     {
+        CommData getServerProperties = new RequestData("getServerPropertiesData");
+        Main.getClient().sendString(Utilities.objSerialize(getServerProperties));
         CommData getConnectedUserData = new RequestData("getConnectedUserData");
         Main.getClient().sendString(Utilities.objSerialize(getConnectedUserData));
+    }
+
+    public void populateServerProperties(ServerPropertiesData serverPropertiesData)
+    {
+        lblServerName.setText(serverPropertiesData.getServerName());
+        lblServerDescription.setText(serverPropertiesData.getServerDescription());
+        pnlServerInfo.revalidate();
     }
 
     public void populateOnlineUsers(ArrayList<String> users)
