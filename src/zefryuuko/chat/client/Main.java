@@ -1,6 +1,7 @@
 package zefryuuko.chat.client;
 
 import zefryuuko.chat.commdata.RequestData;
+import zefryuuko.chat.lib.Git;
 import zefryuuko.chat.lib.Utilities;
 
 public class Main
@@ -10,6 +11,7 @@ public class Main
     private static String clientUsername;
     private static boolean serverHasGit;
     private static String serverGitAddress;
+    private static Git git;
 
     public static void main(String[] args)
     {
@@ -75,5 +77,15 @@ public class Main
     public static void setServerHasGit(boolean serverHasGit)
     {
         Main.serverHasGit = serverHasGit;
+    }
+
+    public static Git getGit()
+    {
+        return git;
+    }
+
+    public static void setGit(Git git)
+    {
+        Main.git = git;
     }
 }
