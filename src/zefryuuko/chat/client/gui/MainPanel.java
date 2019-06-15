@@ -2,6 +2,7 @@ package zefryuuko.chat.client.gui;
 
 import zefryuuko.chat.client.Main;
 import zefryuuko.chat.commdata.*;
+import zefryuuko.chat.lib.Git;
 import zefryuuko.chat.lib.Utilities;
 
 import javax.swing.*;
@@ -95,6 +96,7 @@ public class MainPanel extends JPanel
         lblServerDescription.setText(serverPropertiesData.getServerDescription());
         Main.setServerHasGit(serverPropertiesData.hasGit());
         Main.setServerGitAddress(serverPropertiesData.getGitAddress());
+        loadGit();
         pnlServerInfo.revalidate();
     }
 
@@ -118,6 +120,13 @@ public class MainPanel extends JPanel
         }
         spaneMessagesContainer.revalidate();
         spaneMessagesContainer.repaint();
+    }
+
+    private void loadGit()
+    {
+        if (!Main.isServerHasGit()) return;
+        Git git = new Git(Main.getServerGitAddress());
+        Main.setGit(git);
     }
 
     public void addMessage(ChatData chatData)
