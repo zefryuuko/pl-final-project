@@ -14,6 +14,8 @@ public class Main
     private static String repoAddress = "https://github.com/zefryuuko/useless-repository.git";
     private static String serverName = "Zef's Server";
     private static String serverDescription = "A server for testing purposes.";
+    private static int savedMessagesLimit = 10;
+    private static MessagesContainer messagesContainer;
     private static Git git;
     private static Routine gitNotificationRoutine;
 
@@ -22,9 +24,9 @@ public class Main
         Utilities.makeDir("appdata/repofiles");
 
         connectedUsers = new HashMap();
+        messagesContainer = new MessagesContainer(savedMessagesLimit);
         server = new Server(5550);
         server.start();
-
         git = new Git(repoAddress);
         gitNotificationRoutine = new Routine(new GitNotificationRoutine(), 10000);
         gitNotificationRoutine.start();
@@ -78,5 +80,10 @@ public class Main
     public static void setServerDescription(String serverDescription)
     {
         Main.serverDescription = serverDescription;
+    }
+
+    public static MessagesContainer getMessagesContainer()
+    {
+        return messagesContainer;
     }
 }
