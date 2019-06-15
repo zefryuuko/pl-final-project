@@ -38,7 +38,8 @@ public class MessagesContainer
         {
             BufferedReader bufferedReader = new BufferedReader(new FileReader("appdata/saved-messages.msgcontainer"));
             String data = "";
-            while ((data += bufferedReader.readLine()) != null);
+            String line = "";
+            while ((line = bufferedReader.readLine()) != null) data += line;
             this.messages = (LinkedList<ChatData>) Utilities.objDeserialize(data);
             while (messages.size() > limit)
             {
