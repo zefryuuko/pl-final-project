@@ -32,7 +32,7 @@ public class MessagesContainer
         return messages;
     }
 
-    private void loadMessagesFile())
+    private void loadMessagesFile()
     {
         try
         {
