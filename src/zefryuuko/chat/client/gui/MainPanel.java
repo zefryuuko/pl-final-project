@@ -116,8 +116,11 @@ public class MainPanel extends JPanel
             spaneMessagesContainer.addMessage(messageContainer);
         }
         spaneMessagesContainer.revalidate();
-        spaneMessagesContainer.getVerticalScrollBar().setValue(spaneMessagesContainer.getVerticalScrollBar().getMinimum());
-        spaneMessagesContainer.getVerticalScrollBar().setValue(spaneMessagesContainer.getVerticalScrollBar().getMaximum());
+        spaneMessagesContainer.repaint();
+        SwingUtilities.invokeLater( () ->
+        {
+            spaneMessagesContainer.getVerticalScrollBar().setValue(spaneMessagesContainer.getVerticalScrollBar().getMaximum());
+        });
     }
 
     public void addMessage(ChatData chatData)
@@ -125,7 +128,11 @@ public class MainPanel extends JPanel
         MessageContainer messageContainer = new MessageContainer(chatData.getUsername(), chatData.getData());
         spaneMessagesContainer.addMessage(messageContainer);
         spaneMessagesContainer.revalidate();
-        spaneMessagesContainer.getVerticalScrollBar().setValue(spaneMessagesContainer.getVerticalScrollBar().getMinimum());
+        spaneMessagesContainer.repaint();
+        SwingUtilities.invokeLater( () ->
+                {
+                spaneMessagesContainer.getVerticalScrollBar().setValue(spaneMessagesContainer.getVerticalScrollBar().getMaximum());
+                });
         spaneMessagesContainer.getVerticalScrollBar().setValue(spaneMessagesContainer.getVerticalScrollBar().getMaximum());
     }
 }
