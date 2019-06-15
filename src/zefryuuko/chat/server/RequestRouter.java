@@ -19,6 +19,7 @@ public class RequestRouter
                 response = getRequestDataResponse((RequestData) commData, sessionID);
                 break;
             case "ChatData":
+                Main.getMessagesContainer().addMessage((ChatData) commData);
                 broadcastChat((ChatData) commData);
                 break;
             case "InitHandshakeData":
