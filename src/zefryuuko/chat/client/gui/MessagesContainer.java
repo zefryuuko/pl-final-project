@@ -1,12 +1,14 @@
 package zefryuuko.chat.client.gui;
 
+import zefryuuko.chat.client.Main;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class MessagesContainer extends JScrollPane
 {
     private GridBagConstraints c = new GridBagConstraints();
-    private JPanel pnlContainer = new JPanel();
+    private ScrollablePanel pnlContainer = new ScrollablePanel();
 
     public MessagesContainer()
     {
@@ -14,6 +16,8 @@ public class MessagesContainer extends JScrollPane
         this.setViewportView(pnlContainer);
         this.setBorder(null);
         this.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        this.getViewport().setOpaque(false);
+        this.setBackground(new Color(54, 57, 62));
 //        UIManager.put("ScrollBar.track", new Color(54, 57, 62));
 
         // Object properties
