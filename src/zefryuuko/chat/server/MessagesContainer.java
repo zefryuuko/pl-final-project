@@ -8,7 +8,7 @@ import java.util.LinkedList;
 
 public class MessagesContainer
 {
-    private final int limit;
+    private int limit = 0;
     private LinkedList<ChatData> messages;
 
     public MessagesContainer(int limit)
@@ -40,6 +40,11 @@ public class MessagesContainer
             String data = "";
             while ((data += bufferedReader.readLine()) != null);
             this.messages = (LinkedList<ChatData>) Utilities.objDeserialize(data);
+            while (messages.size() > limit)
+            {
+                messages.removeFirst();
+            }
+            saveToFile();
         }
         catch (IOException e)
         {
