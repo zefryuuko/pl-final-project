@@ -41,7 +41,7 @@ public class MainPanel extends JPanel
         pnlServerInfo.setBorder(new EmptyBorder(5, 15, 5, 15));
         lblServerName.setText("Loading server name...");
         lblServerName.setFont(new Font("Helvetica Neue", Font.BOLD, 16));
-        lblServerName.setForeground(Color.WHITE);
+        lblServerName.setForeground(new Color(189, 195, 204));
         lblServerDescription.setText("Loading server description...");
         lblServerDescription.setFont(new Font("Helvetica Neue", Font.PLAIN, 12));
         lblServerDescription.setForeground(Color.LIGHT_GRAY);
