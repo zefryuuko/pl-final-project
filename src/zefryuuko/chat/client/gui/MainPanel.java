@@ -19,6 +19,7 @@ public class MainPanel extends JPanel
     private JPanel pnlServerInfo = new JPanel();
     private JLabel lblServerName = new JLabel();
     private JLabel lblServerDescription = new JLabel();
+    private JButton btnShowFiles = new JButton();
     private MessagesContainer spaneMessagesContainer = new MessagesContainer();
     private MessageTextField txtMessage = new MessageTextField();
 
@@ -46,6 +47,7 @@ public class MainPanel extends JPanel
         lblServerName.setForeground(new Color(189, 195, 204));
         lblServerDescription.setText("Loading server description...");
         lblServerDescription.setFont(new Font("Helvetica Neue", Font.PLAIN, 12));
+        btnShowFiles.setText("Show files");
         lblServerDescription.setForeground(Color.LIGHT_GRAY);
 
         // Panel objects
@@ -127,6 +129,16 @@ public class MainPanel extends JPanel
         if (!Main.isServerHasGit()) return;
         Git git = new Git(Main.getServerGitAddress());
         Main.setGit(git);
+        pnlServerInfo.add(btnShowFiles, BorderLayout.EAST);
+    }
+
+    public void refreshGit()
+    {
+        btnShowFiles.setText("Pulling from origin...");
+        btnShowFiles.setEnabled(false);
+        Main.getGit().pull();
+        btnShowFiles.setText("Show files");
+        btnShowFiles.setEnabled(true);
     }
 
     public void addMessage(ChatData chatData)
