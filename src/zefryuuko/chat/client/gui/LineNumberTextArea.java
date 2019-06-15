@@ -1,7 +1,6 @@
 package zefryuuko.chat.client.gui;
 
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import java.awt.*;
 import java.awt.event.KeyEvent;
