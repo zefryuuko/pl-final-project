@@ -11,10 +11,7 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.Properties;
 
 public class ConnectPanel extends JPanel
@@ -65,6 +62,7 @@ public class ConnectPanel extends JPanel
         btnConnect.setPreferredSize(new Dimension(200, 35));
         btnConnect.addActionListener(new btnConnectActionlistener());
         btnAddToList.setText("Save to list");
+        btnAddToList.addActionListener(e -> saveLoginInfo());
         pnlSavedLogin.setPreferredSize(new Dimension(400, 100));
         pnlSavedLogin.setLayout(new GridBagLayout());
         pnlSavedLogin.setBackground(new Color(44, 47, 51));
@@ -74,15 +72,7 @@ public class ConnectPanel extends JPanel
 //        spaneSavedLogin.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         spaneSavedLogin.getViewport().setBackground(new Color(44, 47, 51));
         spaneSavedLogin.setBorder(null);
-        savedLoginData = getSavedLogins();
-        savedLoginDataTbl = getSavedLoginTableData(savedLoginData);
-        tblSavedLogin = new JTable(savedLoginDataTbl, tblSavedLoginColumns);
-        tblSavedLogin.setBackground(new Color(44, 47, 51));
-        tblSavedLogin.setForeground(Color.WHITE);
-        tblSavedLogin.getTableHeader().setBackground(new Color(44, 47, 51));
-        tblSavedLogin.getTableHeader().setForeground(Color.WHITE);
-        tblSavedLogin.setShowGrid(false);
-        tblSavedLogin.getSelectionModel().addListSelectionListener(new tblSavedLoginListSelectionListener());
+        generateTable();
 
 
         // Panel objects
@@ -145,6 +135,43 @@ public class ConnectPanel extends JPanel
             return false;
         }
         return true;
+    }
+
+    private void generateTable()
+    {
+        savedLoginData = getSavedLogins();
+        savedLoginDataTbl = getSavedLoginTableData(savedLoginData);
+        tblSavedLogin = new JTable(savedLoginDataTbl, tblSavedLoginColumns);
+        tblSavedLogin.setBackground(new Color(44, 47, 51));
+        tblSavedLogin.setForeground(Color.WHITE);
+        tblSavedLogin.getTableHeader().setBackground(new Color(44, 47, 51));
+        tblSavedLogin.getTableHeader().setForeground(Color.WHITE);
+        tblSavedLogin.setShowGrid(false);
+        tblSavedLogin.getSelectionModel().addListSelectionListener(new tblSavedLoginListSelectionListener());
+        spaneSavedLogin.setViewportView(tblSavedLogin);
+        spaneSavedLogin.revalidate();
+    }
+
+    private void saveLoginInfo()
+    {
+        if (!isValidInput()) return;
+        String path = String.format("appdata/saved-logins/%s@%s.properties", txtUsername.getText(), txtServerAddress.getText());
+        Properties newProperties = new Properties();
+
+        try
+        {
+            Writer inputStream = new FileWriter(path);
+            newProperties.setProperty("host_address", txtServerAddress.getText());
+            newProperties.setProperty("host_password", new String(passServerPassword.getPassword()));
+            newProperties.setProperty("client_username", txtUsername.getText());
+            newProperties.store(inputStream, "Client login data");
+            generateTable();
+        }
+        catch (IOException e)
+        {
+            JOptionPane.showMessageDialog(null, "Failed to save login info.\nDetails: " + e, "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
     }
 
     private String[][] getSavedLogins()
