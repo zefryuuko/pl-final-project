@@ -16,7 +16,6 @@ public class Window extends JFrame
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setSize(new Dimension(1280, 720));
         this.setMinimumSize(new Dimension(800, 600));
-        this.setResizable(false);
         this.setLocationRelativeTo(null);
 
         // Window default ContentPane
