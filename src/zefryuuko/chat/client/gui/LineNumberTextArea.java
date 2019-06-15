@@ -2,6 +2,7 @@ package zefryuuko.chat.client.gui;
 
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
+import javax.swing.text.BadLocationException;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -101,6 +102,26 @@ public class LineNumberTextArea extends JPanel
     public String getText()
     {
         return textArea.getText();
+    }
+
+    public String getSelectedText()
+    {
+        return textArea.getSelectedText();
+    }
+
+    public int getSelectionStart()
+    {
+        return textArea.getSelectionStart();
+    }
+
+    public int getSelectionEnd()
+    {
+        return textArea.getSelectionEnd();
+    }
+
+    public int getLineOfOfset(int offset) throws BadLocationException
+    {
+        return textArea.getLineOfOffset(offset);
     }
 
     public void setTextAreaBackground(Color c)
