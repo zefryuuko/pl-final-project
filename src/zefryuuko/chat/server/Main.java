@@ -14,7 +14,7 @@ public class Main
     private static String repoAddress = "https://github.com/zefryuuko/useless-repository.git";
     private static String serverName = "Zef's Server";
     private static String serverDescription = "A server for testing purposes.";
-    private static int savedMessagesLimit = 10;
+    private static int savedMessagesLimit = 20;
     private static MessagesContainer messagesContainer;
     private static Git git;
     private static Routine gitNotificationRoutine;
