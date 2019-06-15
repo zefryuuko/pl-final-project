@@ -141,7 +141,14 @@ public class ConnectPanel extends JPanel
     {
         savedLoginData = getSavedLogins();
         savedLoginDataTbl = getSavedLoginTableData(savedLoginData);
-        tblSavedLogin = new JTable(savedLoginDataTbl, tblSavedLoginColumns);
+        tblSavedLogin = new JTable(savedLoginDataTbl, tblSavedLoginColumns)
+        {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex)
+            {
+                return false;
+            }
+        };
         tblSavedLogin.setBackground(new Color(44, 47, 51));
         tblSavedLogin.setForeground(Color.WHITE);
         tblSavedLogin.getTableHeader().setBackground(new Color(44, 47, 51));
