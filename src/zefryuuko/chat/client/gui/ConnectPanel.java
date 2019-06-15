@@ -12,6 +12,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Properties;
 
 public class ConnectPanel extends JPanel
@@ -162,6 +164,14 @@ public class ConnectPanel extends JPanel
     private void saveLoginInfo()
     {
         if (!isValidInput()) return;
+        ArrayList<String> hosts = new ArrayList(Arrays.asList(savedLoginDataTbl[0]));
+        ArrayList<String> usernames = new ArrayList(Arrays.asList(savedLoginDataTbl[1]));
+        if (hosts.contains(txtServerAddress.getText()))
+        {
+            JOptionPane.showMessageDialog(null, "The host you want to save is already saved in the list.", "", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
         String path = String.format("appdata/saved-logins/%s@%s.properties", txtUsername.getText(), txtServerAddress.getText());
         Properties newProperties = new Properties();
 
