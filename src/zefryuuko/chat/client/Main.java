@@ -6,13 +6,13 @@ import zefryuuko.chat.lib.Utilities;
 public class Main
 {
     private static Client client;
-    private static Window window;
+    private static MainWindow mainWindow;
     private static String clientUsername;
 
     public static void main(String[] args)
     {
-        window = new Window();
-        window.setVisible(true);
+        mainWindow = new MainWindow();
+        mainWindow.setVisible(true);
 //        client = new Client("localhost", 5550);
 //        client.run();
 
@@ -40,9 +40,9 @@ public class Main
         Main.client = client;
     }
 
-    public static Window getWindow()
+    public static MainWindow getMainWindow()
     {
-        return window;
+        return mainWindow;
     }
 
     public static String getClientUsername()

@@ -5,20 +5,20 @@ import zefryuuko.chat.client.gui.*;
 import javax.swing.*;
 import java.awt.*;
 
-public class Window extends JFrame
+public class MainWindow extends JFrame
 {
     ConnectPanel connectPanel = new ConnectPanel();
     MainPanel mainPanel = new MainPanel();
 
-    public Window()
+    public MainWindow()
     {
-        // Window properties
+        // MainWindow properties
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setSize(new Dimension(1280, 720));
         this.setMinimumSize(new Dimension(800, 600));
         this.setLocationRelativeTo(null);
 
-        // Window default ContentPane
+        // MainWindow default ContentPane
         this.setContentPane(connectPanel);
     }
 

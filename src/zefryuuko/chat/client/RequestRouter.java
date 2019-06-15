@@ -13,13 +13,13 @@ public class RequestRouter
         {
             case "ConnectedUserData":
                 ConnectedUserData connectedUserData = (ConnectedUserData) commData;
-                Main.getWindow().getMainPanel().populateOnlineUsers(connectedUserData.getConnectedUsers());
+                Main.getMainWindow().getMainPanel().populateOnlineUsers(connectedUserData.getConnectedUsers());
                 break;
             case "ServerPropertiesData":
-                Main.getWindow().getMainPanel().populateServerProperties((ServerPropertiesData) commData);
+                Main.getMainWindow().getMainPanel().populateServerProperties((ServerPropertiesData) commData);
                 break;
             case "ChatData":
-                Main.getWindow().getMainPanel().addMessage((ChatData) commData);
+                Main.getMainWindow().getMainPanel().addMessage((ChatData) commData);
                 break;
             case "InitHandshakeResponseData":
                 InitHandshakeResponseData initHandshakeResponseData = (InitHandshakeResponseData) commData;
@@ -28,10 +28,10 @@ public class RequestRouter
                     finalConnectionStatus = 3;
                 if (!initHandshakeResponseData.isAuthenticated())
                     finalConnectionStatus = 2;
-                Main.getWindow().getConnectPanel().setConnectionStatus(finalConnectionStatus);
+                Main.getMainWindow().getConnectPanel().setConnectionStatus(finalConnectionStatus);
                 break;
             case "MessagesData":
-                Main.getWindow().getMainPanel().populateMessages(((MessagesData) commData).getMessages());
+                Main.getMainWindow().getMainPanel().populateMessages(((MessagesData) commData).getMessages());
                 break;
         }
 

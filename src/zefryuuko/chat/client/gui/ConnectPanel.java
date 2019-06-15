@@ -311,10 +311,10 @@ public class ConnectPanel extends JPanel
                     // If client connected successfully
                     Main.setClient(client);
                     Main.setClientUsername(txtUsername.getText());
-                    Main.getWindow().setTitle(txtUsername.getText() + "@" + txtServerAddress.getText() + " - Chat");
-                    Main.getWindow().switchContentPane(1);
-                    Main.getWindow().revalidate();
-                    Main.getWindow().getMainPanel().loadData();
+                    Main.getMainWindow().setTitle(txtUsername.getText() + "@" + txtServerAddress.getText() + " - Chat");
+                    Main.getMainWindow().switchContentPane(1);
+                    Main.getMainWindow().revalidate();
+                    Main.getMainWindow().getMainPanel().loadData();
                 }
                 catch (IOException e1)
                 {
