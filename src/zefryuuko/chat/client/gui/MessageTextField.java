@@ -6,10 +6,7 @@ import zefryuuko.chat.lib.Utilities;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
+import java.awt.event.*;
 
 public class MessageTextField extends JPanel
 {
@@ -34,6 +31,7 @@ public class MessageTextField extends JPanel
         txtMessage.setText("Enter a message  ");
         txtMessage.addActionListener(new txtMessageActionListener());
         txtMessage.addFocusListener(new txtMessageFocusListener());
+        txtMessage.addKeyListener(new txtMessageKeyListener());
 
         // Panel objects
         c.gridheight = 1;
@@ -47,6 +45,32 @@ public class MessageTextField extends JPanel
     public String getText()
     {
         return txtMessage.getText();
+    }
+
+    private class txtMessageKeyListener implements KeyListener
+    {
+        @Override
+        public void keyTyped(KeyEvent e)
+        {
+
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e)
+        {
+            if (e.isShiftDown() && e.getKeyCode() == KeyEvent.VK_ENTER && txtMessage.getText().isEmpty())
+            {
+                txtMessage.setText(txtMessage.getText() + "[br/] ");
+                txtMessage.revalidate();
+                return;
+            }
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e)
+        {
+
+        }
     }
 
     private class txtMessageActionListener implements ActionListener

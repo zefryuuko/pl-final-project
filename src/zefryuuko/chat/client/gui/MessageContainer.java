@@ -76,7 +76,11 @@ public class MessageContainer extends JPanel
         for (int i = 0; i < tokenizedMessage.length; i++)
         {
             String token = tokenizedMessage[i];
-            if (isURL(token) && isImageURL(token))
+            if (token.contains("[br/]"))
+            {
+                tokenizedMessage[i] = tokenizedMessage[i].replace("[br/]", "<br/>");
+            }
+            else if (isURL(token) && isImageURL(token))
                 tokenizedMessage[i] = String.format("<a href='%s'>%s</a><br><div class='container-alt' width=312px><div class='imgview' style='background-image:url(\"%s\");'></div></div>", token, token, token);
             else if (isURL(token))
                 tokenizedMessage[i] = String.format("<a href='%s'>%s</a>", token, token);
