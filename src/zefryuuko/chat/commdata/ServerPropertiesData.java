@@ -15,4 +15,24 @@ public class ServerPropertiesData extends CommData
         this.hasGit = hasGit;
         this.gitAddress = gitAddress;
     }
+
+    public String getServerName()
+    {
+        return serverName;
+    }
+
+    public String getServerDescription()
+    {
+        return serverDescription;
+    }
+
+    public boolean hasGit()
+    {
+        return hasGit;
+    }
+
+    public String getGitAddress()
+    {
+        return gitAddress;
+    }
 }
