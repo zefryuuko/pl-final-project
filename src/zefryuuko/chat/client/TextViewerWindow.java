@@ -4,6 +4,7 @@ import zefryuuko.chat.client.gui.LineNumberTextArea;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.BadLocationException;
 import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -13,8 +14,10 @@ import java.io.IOException;
 public class TextViewerWindow extends JFrame
 {
     private JPanel pnlMain = new JPanel();
+    private JPanel pnlSouthContainer = new JPanel();
     private JLabel lblFileName = new JLabel();
     private LineNumberTextArea txtTextView = new LineNumberTextArea();
+    private JButton btnDiscussSelected = new JButton();
     private GridBagConstraints c = new GridBagConstraints();
 
     public TextViewerWindow()
@@ -42,11 +45,16 @@ public class TextViewerWindow extends JFrame
         txtTextView.setTextAreaForeground(Color.WHITE);
         txtTextView.setLineNumberingBackground(new Color(59, 63, 68));
         txtTextView.setEditable(false);
+        pnlSouthContainer.setLayout(new FlowLayout(FlowLayout.LEADING, 0, 7));
+        pnlSouthContainer.setBackground(new Color(51, 54, 58));
+        btnDiscussSelected.setText("Discuss selected");
 
 
         // Content pane objects
-        pnlMain.add(lblFileName, BorderLayout.NORTH);
+        pnlSouthContainer.add(btnDiscussSelected);
         pnlMain.add(txtTextView, BorderLayout.CENTER);
+        pnlMain.add(lblFileName, BorderLayout.NORTH);
+        pnlMain.add(pnlSouthContainer, BorderLayout.SOUTH);
     }
 
     public TextViewerWindow(String filePath)
