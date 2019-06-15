@@ -21,11 +21,11 @@ public class Main
             @Override
             public void run()
             {
-                if (client.isRunning())
-                {
-                    RequestData disconnectRequest = new RequestData("clientDisconnect");
-                    client.sendString(Utilities.objSerialize(disconnectRequest));
-                }
+            if (client != null && client.isRunning())
+            {
+                RequestData disconnectRequest = new RequestData("clientDisconnect");
+                client.sendString(Utilities.objSerialize(disconnectRequest));
+            }
             }
         });
     }
