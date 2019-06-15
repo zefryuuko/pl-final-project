@@ -15,6 +15,9 @@ public class RequestRouter
                 ConnectedUserData connectedUserData = (ConnectedUserData) commData;
                 Main.getWindow().getMainPanel().populateOnlineUsers(connectedUserData.getConnectedUsers());
                 break;
+            case "ServerPropertiesData":
+                Main.getWindow().getMainPanel().populateServerProperties((ServerPropertiesData) commData);
+                break;
             case "ChatData":
                 Main.getWindow().getMainPanel().addMessage((ChatData) commData);
                 break;
