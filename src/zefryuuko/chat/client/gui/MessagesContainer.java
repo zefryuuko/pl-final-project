@@ -1,7 +1,5 @@
 package zefryuuko.chat.client.gui;
 
-import zefryuuko.chat.client.Main;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ComponentEvent;
