@@ -44,8 +44,8 @@ public class RequestRouter
                 break;
             case "getServerPropertiesData":
                 boolean hasGit = Main.getRepoAddress() == null ? false : true;
-                ServerPropertiesData serverPropertiesData = new ServerPropertiesData(Main.getServerName(), Main.getServerDescription(),
-                                                                                     hasGit, Main.getRepoAddress());
+                response = new ServerPropertiesData(Main.getServerName(), Main.getServerDescription(),
+                                                    hasGit, Main.getRepoAddress());
         }
 
         return response;
