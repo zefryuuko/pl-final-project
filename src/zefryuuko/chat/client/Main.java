@@ -8,6 +8,8 @@ public class Main
     private static Client client;
     private static MainWindow mainWindow;
     private static String clientUsername;
+    private static boolean serverHasGit;
+    private static String serverGitAddress;
 
     public static void main(String[] args)
     {
@@ -53,5 +55,25 @@ public class Main
     public static void setClientUsername(String clientUsername)
     {
         Main.clientUsername = clientUsername;
+    }
+
+    public static String getServerGitAddress()
+    {
+        return serverGitAddress;
+    }
+
+    public static void setServerGitAddress(String serverGitAddress)
+    {
+        Main.serverGitAddress = serverGitAddress;
+    }
+
+    public static boolean isServerHasGit()
+    {
+        return serverHasGit;
+    }
+
+    public static void setServerHasGit(boolean serverHasGit)
+    {
+        Main.serverHasGit = serverHasGit;
     }
 }
