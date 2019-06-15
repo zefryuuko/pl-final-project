@@ -100,7 +100,11 @@ public class MessageContainer extends JPanel
     private boolean isImageURL(String text)
     {
         text = text.toLowerCase();
-        if (text.endsWith(".png") || text.endsWith(".jpg") || text.endsWith(".gif")) return true;
+        String[] acceptedImageFormat = {".png", ".jpg", ".jpeg", ".gif"};
+        for (String imageFormat : acceptedImageFormat)
+        {
+            if (text.endsWith(imageFormat)) return true;
+        }
         return false;
     }
 
