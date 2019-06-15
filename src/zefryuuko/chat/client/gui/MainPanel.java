@@ -14,7 +14,7 @@ public class MainPanel extends JPanel
 {
     GridBagConstraints c = new GridBagConstraints();
     private JTextPane paneOnlineUsers = new JTextPane();
-    private String paneOnlineUsersCSS = "body{background:#2c2f33;color:#ffffff;margin:0;padding:0 7px 0px 7px;font-family:'Helvetica Neue', Arial, serif;}h3.header{color:#666a71;}ul{list-style-type:none;padding:0;margin:0;}.user{width:100%;height:30px;background:#36393e;padding:5px;margin-bottom:5px;font-family:'Helvetica Neue', Arial, serif;text-align:left;.hidden{background:#2c2f33;height:1px;padding:0px;margin-bottom:0px;font-size:1px;}";
+    private String paneOnlineUsersCSS = "body{background:#2c2f33;color:#ffffff;margin:0;padding:0 7px 0px 7px;font-family:'Helvetica Neue', Arial, serif;}h3.header{color:#666a71;}ul{list-style-type:none;padding:0;margin:0;}.user{width:100%;height:30px;background:#36393e;padding:5px;margin-bottom:5px;font-family:'Helvetica Neue', Arial, serif;text-align:left;}";
     private JPanel pnlServerInfo = new JPanel();
     private JLabel lblServerName = new JLabel();
     private JLabel lblServerDescription = new JLabel();
@@ -103,7 +103,6 @@ public class MainPanel extends JPanel
         {
             html = html + "<div class='user'>" + user + "</div>";
         }
-        html = html + "<div class='hidden'>                         </div>";
         html = html + "</div></body></html>";
         paneOnlineUsers.setText(html);
     }
