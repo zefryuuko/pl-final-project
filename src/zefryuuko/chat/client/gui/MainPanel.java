@@ -28,6 +28,7 @@ public class MainPanel extends JPanel
         this.c.insets = new Insets(0, 0, 0, 0);
 
         // Object properties
+        paneOnlineUsers.setMinimumSize(new Dimension(200, 600));
         paneOnlineUsers.setPreferredSize(new Dimension(200, 600));
         paneOnlineUsers.setSize(new Dimension(200, 600));
         paneOnlineUsers.setEditable(false);
