@@ -204,6 +204,7 @@ public class ConnectPanel extends JPanel
         {
             Utilities.deleteFile(pathToRemove);
             generateTable();
+            btnRemoveFromList.setEnabled(false);
         }
         else
             JOptionPane.showMessageDialog(null, "Failed to delete login info.\nDetails: " + pathToRemove + " not found.", "Error", JOptionPane.ERROR_MESSAGE);
