@@ -20,8 +20,6 @@ public class MessagesContainer extends JScrollPane
         this.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         this.getViewport().setOpaque(false);
         this.setBackground(new Color(54, 57, 62));
-//        UIManager.put("ScrollBar.track", new Color(54, 57, 62));
-
 
         // Object properties
         c.gridx = c.gridy = 0;
@@ -37,8 +35,6 @@ public class MessagesContainer extends JScrollPane
         c.weighty = 0;
         c.anchor = GridBagConstraints.NORTH;
         c.fill = GridBagConstraints.BOTH;
-//        pnlContainer.add(tempMsg, c); c.gridy++;
-//        pnlContainer.add(tempMsg2, c);
     }
 
     public void addMessage(MessageContainer messageContainer)
