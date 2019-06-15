@@ -93,6 +93,8 @@ public class MainPanel extends JPanel
     {
         lblServerName.setText(serverPropertiesData.getServerName());
         lblServerDescription.setText(serverPropertiesData.getServerDescription());
+        Main.setServerHasGit(serverPropertiesData.hasGit());
+        Main.setServerGitAddress(serverPropertiesData.getGitAddress());
         pnlServerInfo.revalidate();
     }
 
