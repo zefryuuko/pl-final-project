@@ -71,7 +71,6 @@ public class ConnectPanel extends JPanel
         lblSavedLogin.setText("SAVED LOGINS                                                                                                      ");
         lblSavedLogin.setForeground(Color.WHITE);
         lblSavedLogin.setFont(new Font("Helvetica Neue", Font.BOLD, 12));
-//        spaneSavedLogin.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         spaneSavedLogin.getViewport().setBackground(new Color(44, 47, 51));
         spaneSavedLogin.setBorder(null);
         generateTable();
