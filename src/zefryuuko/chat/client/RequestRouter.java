@@ -30,6 +30,9 @@ public class RequestRouter
                     finalConnectionStatus = 2;
                 Main.getWindow().getConnectPanel().setConnectionStatus(finalConnectionStatus);
                 break;
+            case "MessagesData":
+                Main.getWindow().getMainPanel().populateMessages(((MessagesData) commData).getMessages());
+                break;
         }
 
         return response;
