@@ -47,6 +47,10 @@ public class RequestRouter
                 boolean hasGit = Main.getRepoAddress() == null ? false : true;
                 response = new ServerPropertiesData(Main.getServerName(), Main.getServerDescription(),
                                                     hasGit, Main.getRepoAddress());
+                break;
+            case "getAllMessages":
+                response = new MessagesData(Main.getMessagesContainer().getMessages());
+                break;
         }
 
         return response;
