@@ -1,6 +1,8 @@
 package zefryuuko.chat.client.gui;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
+import javax.swing.border.MatteBorder;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -31,8 +33,9 @@ public class LineNumberTextArea extends JPanel
         lineNumbers.setCaret(new NoTextSelectionCaret(lineNumbers));
         lineNumbers.setBackground(new Color(234, 234, 234));
         lineNumbers.setForeground(Color.GRAY);
+        lineNumbers.setBorder(new MatteBorder(3, 0, 3, 0, lineNumbers.getBackground()));
         textArea.setFont(new Font("Menlo", Font.PLAIN, textArea.getFont().getSize()));
-        textArea.setBorder(null);
+        textArea.setBorder(new MatteBorder(3, 7, 3, 3, textArea.getBackground()));
         textArea.addKeyListener(new textAreaKeyListener());
         textAreaScrollPane.getVerticalScrollBar().addAdjustmentListener(e -> updateLineCountScroll());
 
@@ -104,6 +107,7 @@ public class LineNumberTextArea extends JPanel
     public void setTextAreaBackground(Color c)
     {
         textArea.setBackground(c);
+        textArea.setBorder(new MatteBorder(3, 7, 3, 3, textArea.getBackground()));
     }
 
     public void setTextAreaForeground(Color c)
@@ -114,6 +118,7 @@ public class LineNumberTextArea extends JPanel
     public void setLineNumberingBackground(Color c)
     {
         lineNumbers.setBackground(c);
+        lineNumbers.setBorder(new MatteBorder(3, 0, 3, 0, lineNumbers.getBackground()));
     }
 
     public void setLineNumberingForeground(Color c)
