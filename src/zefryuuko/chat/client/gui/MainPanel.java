@@ -8,6 +8,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class MainPanel extends JPanel
 {
@@ -84,6 +85,8 @@ public class MainPanel extends JPanel
         Main.getClient().sendString(Utilities.objSerialize(getServerProperties));
         CommData getConnectedUserData = new RequestData("getConnectedUserData");
         Main.getClient().sendString(Utilities.objSerialize(getConnectedUserData));
+        CommData getAllMessages = new RequestData("getAllMessages");
+        Main.getClient().sendString(Utilities.objSerialize(getAllMessages));
     }
 
     public void populateServerProperties(ServerPropertiesData serverPropertiesData)
@@ -105,9 +108,14 @@ public class MainPanel extends JPanel
         paneOnlineUsers.setText(html);
     }
 
-    public void populateMessages(ArrayList<String> messages)
+    public void populateMessages(LinkedList<ChatData> messages)
     {
-        // TODO: Load messages
+        for (ChatData message : messages)
+        {
+            MessageContainer messageContainer = new MessageContainer(message.getUsername(), message.getData());
+            spaneMessagesContainer.addMessage(messageContainer);
+        }
+        spaneMessagesContainer.revalidate();
     }
 
     public void addMessage(ChatData chatData)
