@@ -58,7 +58,7 @@ public class MessageTextField extends JPanel
         @Override
         public void keyPressed(KeyEvent e)
         {
-            if (e.isShiftDown() && e.getKeyCode() == KeyEvent.VK_ENTER && txtMessage.getText().isEmpty())
+            if (e.isShiftDown() && e.getKeyCode() == KeyEvent.VK_ENTER && !txtMessage.getText().isEmpty())
             {
                 txtMessage.setText(txtMessage.getText() + "[br/] ");
                 txtMessage.revalidate();
