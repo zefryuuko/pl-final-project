@@ -134,7 +134,7 @@ public class MainPanel extends JPanel
 
     public void refreshGit()
     {
-        btnShowFiles.setText("Pulling from origin...");
+//        btnShowFiles.setText("Pulling...");
         btnShowFiles.setEnabled(false);
         Main.getGit().pull();
         btnShowFiles.setText("Show files");
