@@ -25,6 +25,7 @@ public class GitNotificationRoutine implements RoutineInterface
             Main.getServer().broadcast(Utilities.objSerialize(chatData));
             RequestData refreshGitClient = new RequestData("refreshGitClient");
             Main.getServer().broadcast(Utilities.objSerialize(refreshGitClient));
+            Main.getMessagesContainer().addMessage(chatData);
             logging.log("Broadcasted latest repo change.");
             return;
         }
