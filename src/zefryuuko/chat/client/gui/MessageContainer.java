@@ -24,6 +24,7 @@ public class MessageContainer extends JPanel
 
         // Object properties
         lblUsername.setText(parseUsername(username));
+        lblUsername.setForeground(Color.WHITE);
         lblUsername.setFont(new Font("Helvetica Neue", Font.BOLD, 15));
         pnlSpacer.setOpaque(false);
         txtMessage.setEditable(false);
