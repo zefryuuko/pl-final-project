@@ -1,9 +1,11 @@
 package zefryuuko.chat.client;
 
 import zefryuuko.chat.client.gui.LineNumberTextArea;
+import zefryuuko.chat.commdata.ChatData;
 import zefryuuko.chat.lib.Utilities;
 
 import javax.swing.*;
+import javax.swing.text.BadLocationException;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -63,6 +65,8 @@ public class FileBrowserWindow extends JFrame
         pnlFileActions.setBackground(new Color(48, 51, 56));
         pnlFileActions.setLayout(new GridBagLayout());
         btnDiscuss.setText("Discuss selected");
+        btnDiscuss.setEnabled(false);
+        btnDiscuss.addActionListener(e -> btnDiscussAction());
         lblFilePath.setForeground(Color.WHITE);
         txtPreview.setTextAreaBackground(new Color(44, 47, 51));
         txtPreview.setTextAreaForeground(Color.WHITE);
@@ -172,6 +176,7 @@ public class FileBrowserWindow extends JFrame
                         txtPreview.setText(fileContent.substring(0, fileContent.length() - 1));
                         txtPreview.scrollToTop();
                         lblFilePath.setText(dirFromRoot + lstFiles.getSelectedValue());
+                        btnDiscuss.setEnabled(true);
                     }
                     catch (IOException e)
                     {
@@ -179,6 +184,44 @@ public class FileBrowserWindow extends JFrame
                     }
                 }
             }
+        }
+    }
+
+    private void btnDiscussAction()
+    {
+        try
+        {
+            if (txtPreview.getSelectionStart() == txtPreview.getSelectionEnd())
+            {
+                JOptionPane.showMessageDialog(this, "Please select text to discuss.", "", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            int lineStart = txtPreview.getLineOfOfset(txtPreview.getSelectionStart()) + 1;
+            int lineEnd = txtPreview.getLineOfOfset(txtPreview.getSelectionEnd()) + 1;
+
+            String discussionDialogMessage = String.format("File: %s\nLine: %d-%d\nEnter message:",
+                                                            lblFilePath.getText(), lineStart, lineEnd);
+            String discussionContent = JOptionPane.showInputDialog(this, discussionDialogMessage, "Code Discussion", JOptionPane.QUESTION_MESSAGE);
+            if (discussionContent == null) return;
+
+            String filePath = lblFilePath.getText();
+            String selectedText = txtPreview.getSelectedText();
+            selectedText = selectedText.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+            selectedText = selectedText.replaceAll("\n", "<br> ");
+            String discussionInfo = String.format("<b>%s</b> at line %d-%d", filePath, lineStart, lineEnd);
+
+            String message = String.format("[noescape]%s<div class='container'>%s</div>%s[/noescape]",
+                                            discussionInfo, selectedText, discussionContent);
+
+            ChatData chatData = new ChatData(Main.getClientUsername(), message);
+            Main.getClient().sendString(Utilities.objSerialize(chatData));
+
+            JOptionPane.showMessageDialog(this, "Discussion sent.", "", JOptionPane.INFORMATION_MESSAGE);
+        }
+        catch (BadLocationException e)
+        {
+            e.printStackTrace();
         }
     }
 }
