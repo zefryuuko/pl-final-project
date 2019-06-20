@@ -78,6 +78,7 @@ public class FileBrowserWindow extends JFrame
         txtPreview.setTextAreaBackground(new Color(44, 47, 51));
         txtPreview.setTextAreaForeground(Color.WHITE);
         txtPreview.setLineNumberingBackground(new Color(59, 63, 68));
+        txtPreview.setEditable(false);
         btnBack.setText("Back");
         btnBack.setEnabled(false);
         btnBack.addActionListener(e -> goBack());
