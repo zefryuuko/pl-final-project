@@ -5,6 +5,7 @@ import zefryuuko.chat.commdata.ChatData;
 import zefryuuko.chat.lib.Utilities;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.text.BadLocationException;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -40,25 +41,30 @@ public class FileBrowserWindow extends JFrame
         this.setSize(new Dimension(1280, 720));
         this.setMinimumSize(new Dimension(800, 600));
         this.setLocationRelativeTo(null);
+        this.setTitle("File Explorer");
         this.setVisible(true);
 
         // Object properties
         pnlMain.setLayout(new GridBagLayout());
         pnlMain.setBackground(new Color(54, 57, 62));
         pnlBrowse.setLayout(new GridBagLayout());
-        pnlBrowse.setPreferredSize(new Dimension(200, 100));
-        pnlBrowse.setMinimumSize(new Dimension(200, 100));
-        pnlBrowse.setMaximumSize(new Dimension(200, 100));
-        pnlBrowse.setBackground(new Color(59, 63, 68));
+        pnlBrowse.setPreferredSize(new Dimension(240, 100));
+        pnlBrowse.setMinimumSize(new Dimension(240, 100));
+        pnlBrowse.setMaximumSize(new Dimension(240, 100));
+        pnlBrowse.setBackground(new Color(54, 57, 62));
         pnlNavigation.setMaximumSize(new Dimension(20, 30));
         pnlNavigation.setPreferredSize(new Dimension(20, 30));
         pnlNavigation.setMinimumSize(new Dimension(20, 30));
-        pnlNavigation.setBackground(new Color(48, 51, 56));
-        lstFiles.setBackground(new Color(59, 63, 68));
+        pnlNavigation.setBackground(new Color(54, 57, 62));
+        pnlNavigation.setLayout(new BorderLayout());
+        lstFiles.setBackground(new Color(54, 57, 62));
         lstFiles.setForeground(Color.WHITE);
+        lstFiles.addMouseListener(new lstFilesMouseListener());
+        lstFiles.setBorder(null);
+        spaneFiles.setViewportView(lstFiles);
         spaneFiles.getViewport().setOpaque(false);
+        spaneFiles.setBorder(null);
         pnlViewer.setLayout(new GridBagLayout());
-//        pnlViewer.setBackground(new Color(59, 63, 68));
         pnlNavigation.setMaximumSize(new Dimension(20, 30));
         pnlNavigation.setPreferredSize(new Dimension(20, 30));
         pnlNavigation.setMinimumSize(new Dimension(20, 30));
@@ -67,6 +73,7 @@ public class FileBrowserWindow extends JFrame
         btnDiscuss.setText("Discuss selected");
         btnDiscuss.setEnabled(false);
         btnDiscuss.addActionListener(e -> btnDiscussAction());
+        lblFilePath.setText("Double click a file to view.");
         lblFilePath.setForeground(Color.WHITE);
         txtPreview.setTextAreaBackground(new Color(44, 47, 51));
         txtPreview.setTextAreaForeground(Color.WHITE);
@@ -74,11 +81,9 @@ public class FileBrowserWindow extends JFrame
         btnBack.setText("Back");
         btnBack.setEnabled(false);
         btnBack.addActionListener(e -> goBack());
-        spaneFiles.setViewportView(lstFiles);
-        lstFiles.addMouseListener(new lstFilesMouseListener());
 
         // Panel objects
-        pnlNavigation.add(btnBack);
+        pnlNavigation.add(btnBack, BorderLayout.WEST);
         c.gridx = c.gridy = 0;
         c.weightx = 1;
         c.weighty = 0;
@@ -91,9 +96,11 @@ public class FileBrowserWindow extends JFrame
         c.weightx = 1;
         c.weighty = 0;
         c.fill = GridBagConstraints.BOTH;
+        c.insets = new Insets(0, 45, 0, 10);
         pnlFileActions.add(lblFilePath, c); c.gridx++;
         c.weightx = 0;
         c.fill = GridBagConstraints.NONE;
+        c.insets = new Insets(0, 0, 0, 10);
         pnlFileActions.add(btnDiscuss, c);
 
         c.gridx = c.gridy = 0;
@@ -105,13 +112,13 @@ public class FileBrowserWindow extends JFrame
         pnlViewer.add(txtPreview, c);
 
 
-        c.insets = new Insets(10, 10, 10, 5);
+        c.insets = new Insets(0, 10, 0, 10);
         c.gridx = c.gridy = 0;
         c.weightx = 0;
         c.weighty = 1;
         c.fill = GridBagConstraints.BOTH;
         pnlMain.add(pnlBrowse, c); c.gridx++;
-        c.insets = new Insets(10, 5, 10, 10);
+        c.insets = new Insets(0, 0, 0, 0);
         c.weightx = 1;
         pnlMain.add(pnlViewer, c);
     }
@@ -125,6 +132,9 @@ public class FileBrowserWindow extends JFrame
             String[] filePath = file.getPath().split("/");
             defaultListModel.addElement(filePath[filePath.length - 1]);
         }
+        if (defaultListModel.contains(".git"))
+            defaultListModel.remove(defaultListModel.indexOf(".git"));
+
         this.lstFiles.setModel(defaultListModel);
     }
 
@@ -146,7 +156,7 @@ public class FileBrowserWindow extends JFrame
             dirFromRoot = nextDirFromRoot.substring(0, nextDirFromRoot.length() - 1);
         else
             dirFromRoot = "/";
-        System.out.println("after: " + dirFromRoot);
+
         populateFileList(currentSelectedDir);
         if (currentSelectedDir.equals(baseDir))
             btnBack.setEnabled(false);
