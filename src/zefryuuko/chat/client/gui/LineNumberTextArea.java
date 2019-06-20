@@ -150,4 +150,9 @@ public class LineNumberTextArea extends JPanel
     {
         textArea.setEditable(b);
     }
+
+    public void scrollToTop()
+    {
+        SwingUtilities.invokeLater(() -> textAreaScrollPane.getVerticalScrollBar().getModel().setValue(0));
+    }
 }
