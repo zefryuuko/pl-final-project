@@ -91,4 +91,8 @@ public class Git
         logging.log("Clone command ran successfully.");
     }
 
+    public String getFullDir()
+    {
+        return fullDir;
+    }
 }
