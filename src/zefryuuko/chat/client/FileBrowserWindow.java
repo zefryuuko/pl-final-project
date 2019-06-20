@@ -42,22 +42,22 @@ public class FileBrowserWindow extends JFrame
 
         // Object properties
         pnlMain.setLayout(new GridBagLayout());
-        pnlMain.setBackground(new Color(59, 63, 68));
+        pnlMain.setBackground(new Color(54, 57, 62));
         pnlBrowse.setLayout(new GridBagLayout());
         pnlBrowse.setBackground(new Color(59, 63, 68));
         pnlNavigation.setMaximumSize(new Dimension(20, 30));
         pnlNavigation.setPreferredSize(new Dimension(20, 30));
         pnlNavigation.setMinimumSize(new Dimension(20, 30));
-        pnlNavigation.setBackground(new Color(44, 47, 51));
+        pnlNavigation.setBackground(new Color(48, 51, 56));
         lstFiles.setBackground(new Color(59, 63, 68));
         lstFiles.setForeground(Color.WHITE);
         spaneFiles.getViewport().setOpaque(false);
         pnlViewer.setLayout(new GridBagLayout());
-        pnlViewer.setBackground(new Color(59, 63, 68));
+//        pnlViewer.setBackground(new Color(59, 63, 68));
         pnlNavigation.setMaximumSize(new Dimension(20, 30));
         pnlNavigation.setPreferredSize(new Dimension(20, 30));
         pnlNavigation.setMinimumSize(new Dimension(20, 30));
-        pnlFileActions.setBackground(new Color(44, 47, 51));
+        pnlFileActions.setBackground(new Color(48, 51, 56));
         pnlFileActions.setLayout(new GridBagLayout());
         btnDiscuss.setText("Discuss selected");
         lblFilePath.setForeground(Color.WHITE);
