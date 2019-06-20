@@ -138,8 +138,11 @@ public class FileBrowserWindow extends JFrame
             nextDirFromRoot += dirFromRootSplit[i] + "/";
 
         currentSelectedDir = nextDir.substring(0, nextDir.length() - 1);
-        dirFromRoot = nextDirFromRoot.substring(0, nextDirFromRoot.length() - 1);
-
+        if (dirFromRootSplit.length > 2)
+            dirFromRoot = nextDirFromRoot.substring(0, nextDirFromRoot.length() - 1);
+        else
+            dirFromRoot = "/";
+        System.out.println("after: " + dirFromRoot);
         populateFileList(currentSelectedDir);
         if (currentSelectedDir.equals(baseDir))
             btnBack.setEnabled(false);
