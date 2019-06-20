@@ -170,6 +170,7 @@ public class FileBrowserWindow extends JFrame
                         String currentLine;
                         while ((currentLine = bufferedReader.readLine()) != null) fileContent += currentLine + "\n";
                         txtPreview.setText(fileContent.substring(0, fileContent.length() - 1));
+                        txtPreview.scrollToTop();
                         lblFilePath.setText(dirFromRoot + lstFiles.getSelectedValue());
                     }
                     catch (IOException e)
