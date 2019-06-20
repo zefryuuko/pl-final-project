@@ -166,32 +166,29 @@ public class FileBrowserWindow extends JFrame
     {
         public void mouseClicked(MouseEvent evt)
         {
-            if (evt.getClickCount() == 2)
+            if (evt.getClickCount() == 2 && Utilities.dirExists(currentSelectedDir + "/" + lstFiles.getSelectedValue()))
             {
-                if (Utilities.dirExists(currentSelectedDir + "/" + lstFiles.getSelectedValue()))
-                {
                     currentSelectedDir = currentSelectedDir + "/" + lstFiles.getSelectedValue();
                     dirFromRoot = dirFromRoot + lstFiles.getSelectedValue() + "/";
                     populateFileList(currentSelectedDir);
                     btnBack.setEnabled(true);
-                }
-                else
+            }
+            else if (Utilities.fileExists(currentSelectedDir + "/" + lstFiles.getSelectedValue()))
+            {
+                try
                 {
-                    try
-                    {
-                        BufferedReader bufferedReader = new BufferedReader(new FileReader(currentSelectedDir + "/" + lstFiles.getSelectedValue()));
-                        String fileContent = "";
-                        String currentLine;
-                        while ((currentLine = bufferedReader.readLine()) != null) fileContent += currentLine + "\n";
-                        txtPreview.setText(fileContent.substring(0, fileContent.length() - 1));
-                        txtPreview.scrollToTop();
-                        lblFilePath.setText(dirFromRoot + lstFiles.getSelectedValue());
-                        btnDiscuss.setEnabled(true);
-                    }
-                    catch (IOException e)
-                    {
-                        e.printStackTrace();
-                    }
+                    BufferedReader bufferedReader = new BufferedReader(new FileReader(currentSelectedDir + "/" + lstFiles.getSelectedValue()));
+                    String fileContent = "";
+                    String currentLine;
+                    while ((currentLine = bufferedReader.readLine()) != null) fileContent += currentLine + "\n";
+                    txtPreview.setText(fileContent.substring(0, fileContent.length() - 1));
+                    txtPreview.scrollToTop();
+                    lblFilePath.setText(dirFromRoot + lstFiles.getSelectedValue());
+                    btnDiscuss.setEnabled(true);
+                }
+                catch (IOException e)
+                {
+                    e.printStackTrace();
                 }
             }
         }
