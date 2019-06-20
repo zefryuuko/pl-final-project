@@ -44,6 +44,9 @@ public class FileBrowserWindow extends JFrame
         pnlMain.setLayout(new GridBagLayout());
         pnlMain.setBackground(new Color(54, 57, 62));
         pnlBrowse.setLayout(new GridBagLayout());
+        pnlBrowse.setPreferredSize(new Dimension(200, 100));
+        pnlBrowse.setMinimumSize(new Dimension(200, 100));
+        pnlBrowse.setMaximumSize(new Dimension(200, 100));
         pnlBrowse.setBackground(new Color(59, 63, 68));
         pnlNavigation.setMaximumSize(new Dimension(20, 30));
         pnlNavigation.setPreferredSize(new Dimension(20, 30));
@@ -100,10 +103,12 @@ public class FileBrowserWindow extends JFrame
 
         c.insets = new Insets(10, 10, 10, 5);
         c.gridx = c.gridy = 0;
-        c.weightx = c.weighty = 1;
+        c.weightx = 0;
+        c.weighty = 1;
         c.fill = GridBagConstraints.BOTH;
         pnlMain.add(pnlBrowse, c); c.gridx++;
         c.insets = new Insets(10, 5, 10, 10);
+        c.weightx = 1;
         pnlMain.add(pnlViewer, c);
     }
 
