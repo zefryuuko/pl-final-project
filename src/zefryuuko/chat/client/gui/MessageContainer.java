@@ -24,7 +24,6 @@ public class MessageContainer extends JPanel
 
         // Object properties
         lblUsername.setText(parseUsername(username));
-        lblUsername.setForeground(getNameColor(username));
         lblUsername.setFont(new Font("Helvetica Neue", Font.BOLD, 15));
         pnlSpacer.setOpaque(false);
         txtMessage.setEditable(false);
@@ -88,16 +87,6 @@ public class MessageContainer extends JPanel
         pnlFlair.add(lblFlair, c);
 
         return pnlFlair;
-    }
-
-    private Color getNameColor(String name)
-    {
-        switch (name)
-        {
-            case "Git": return Color.PINK;
-            case "Notification": return Color.CYAN;
-            default: return Color.WHITE;
-        }
     }
 
     private String processRichText(String message)
