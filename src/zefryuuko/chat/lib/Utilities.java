@@ -90,8 +90,7 @@ public class Utilities
     public static boolean fileExists(String path)
     {
         File file = new File(path);
-        if (file.exists()) return true;
-        return false;
+        return file.exists() && file.isFile();
     }
 
     public static boolean deleteFile(String path)
