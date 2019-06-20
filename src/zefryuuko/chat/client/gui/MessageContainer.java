@@ -12,7 +12,7 @@ public class MessageContainer extends JPanel
     private GridBagConstraints c = new GridBagConstraints();
     private JLabel lblUsername = new JLabel();
     private JTextPane txtMessage = new JTextPane();
-    private String txtMessageCSS = "body{color:#ffffff;font-family:'Helvetica Neue',sans-serif;font-size:10px;}a{color:#ffffff;}.imgview{height:200px;width:300px;}.container{background:#3d4147;padding:5px 10px 7px 10px;margin-top:5px;width:100%;color:#e5e5e5;}.container-alt{background:#3d4147;padding:5px 6px 7px 6px;margin-top:5px;color:#e5e5e5;}.subheading{font-size:11px;}";
+    private String txtMessageCSS = "body{color:#ffffff;font-family:'Helvetica Neue',sans-serif;font-size:10px;}a{color:#ffffff;}.imgview{height:200px;width:300px;}.container{background:#3d4147;padding:5px 10px 7px 10px;margin-top:5px;width:100%;color:#e5e5e5;font-family:'Menlo',monospace;}.container-alt{background:#3d4147;padding:5px 6px 7px 6px;margin-top:5px;color:#e5e5e5;font-family:'Menlo',monospace;}.subheading{font-size:11px;}";
 
     public MessageContainer(String username, String message)
     {
