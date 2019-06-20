@@ -1,5 +1,6 @@
 package zefryuuko.chat.client.gui;
 
+import zefryuuko.chat.client.FileBrowserWindow;
 import zefryuuko.chat.client.Main;
 import zefryuuko.chat.commdata.*;
 import zefryuuko.chat.lib.Git;
@@ -48,6 +49,7 @@ public class MainPanel extends JPanel
         lblServerDescription.setText("Loading server description...");
         lblServerDescription.setFont(new Font("Helvetica Neue", Font.PLAIN, 12));
         btnShowFiles.setText("Show files");
+        btnShowFiles.addActionListener(e -> showFiles());
         lblServerDescription.setForeground(Color.LIGHT_GRAY);
 
         // Panel objects
@@ -122,6 +124,12 @@ public class MainPanel extends JPanel
         }
         spaneMessagesContainer.revalidate();
         spaneMessagesContainer.repaint();
+    }
+
+    private void showFiles()
+    {
+        String directory = Main.getGit().getFullDir();
+        new FileBrowserWindow(directory);
     }
 
     private void loadGit()
