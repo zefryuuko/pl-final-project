@@ -11,6 +11,7 @@ public class MessageContainer extends JPanel
 {
     private GridBagConstraints c = new GridBagConstraints();
     private JLabel lblUsername = new JLabel();
+    private JPanel pnlSpacer = new JPanel();
     private JTextPane txtMessage = new JTextPane();
     private String txtMessageCSS = "body{color:#ffffff;font-family:'Helvetica Neue',sans-serif;font-size:10px;}a{color:#ffffff;}.imgview{height:200px;width:300px;}.container{background:#3d4147;padding:5px 10px 7px 10px;margin-top:5px;width:100%;color:#e5e5e5;font-family:'Menlo',monospace;}.container-alt{background:#3d4147;padding:5px 6px 7px 6px;margin-top:5px;color:#e5e5e5;font-family:'Menlo',monospace;}.subheading{font-size:11px;}";
 
@@ -22,9 +23,10 @@ public class MessageContainer extends JPanel
         this.setBackground(new Color(54, 57, 62));
 
         // Object properties
-        lblUsername.setText(username);
+        lblUsername.setText(parseUsername(username));
         lblUsername.setForeground(getNameColor(username));
         lblUsername.setFont(new Font("Helvetica Neue", Font.BOLD, 15));
+        pnlSpacer.setOpaque(false);
         txtMessage.setEditable(false);
         txtMessage.setContentType("text/html");
         txtMessage.setText("<html><style>" + txtMessageCSS + "</style><body>" + processRichText(message) + "</body></html>");
@@ -36,12 +38,56 @@ public class MessageContainer extends JPanel
         // Panel objects
         c.gridheight = 1;
         c.gridwidth = 1;
-        c.weightx = 1;
+        c.weightx = 0;
         c.weighty = 0;
+        this.add(lblUsername, c); c.gridx++;
+        this.add(generateFlair(username), c); c.gridx++;
         c.fill = GridBagConstraints.BOTH;
-        this.add(lblUsername, c); c.gridy++;
+        c.weightx = 1;
+        this.add(pnlSpacer, c); c.gridx = 0; c.gridy++;
         this.c.insets = new Insets(2, 0, 0, 0);
+        this.c.gridwidth = 3;
         this.add(txtMessage, c);
+    }
+
+    private String parseUsername(String username)
+    {
+        String output = username;
+        String[] filter = {"[Bot]", "[CodeDiscuss]"};
+        for (String keyword : filter) output = output.replace(keyword, "");
+        return output;
+    }
+
+    private JPanel generateFlair(String username)
+    {
+        JPanel pnlFlair = new JPanel();
+        GridBagConstraints c = new GridBagConstraints();
+        JLabel lblFlair = new JLabel();
+
+        pnlFlair.setLayout(new GridBagLayout());
+        lblFlair.setFont(new Font("Helvetica Neue", Font.BOLD, 13));
+        if (username.contains("[Bot]"))
+        {
+            lblFlair.setText("Bot");
+            lblFlair.setForeground(Color.WHITE);
+            pnlFlair.setBackground(new Color(202, 105, 219));
+        }
+        else if (username.contains("[CodeDiscuss]"))
+        {
+            lblFlair.setText("Discussion");
+            lblFlair.setForeground(Color.WHITE);
+            pnlFlair.setBackground(new Color(105, 168, 219));
+        }
+        else
+        {
+            pnlFlair.setOpaque(false);
+            pnlFlair.setPreferredSize(new Dimension(0, lblFlair.getPreferredSize().height));
+        }
+        c.gridx = c.gridy = 0;
+        c.insets = new Insets(0, 5, 0, 5);
+        pnlFlair.add(lblFlair, c);
+
+        return pnlFlair;
     }
 
     private Color getNameColor(String name)
