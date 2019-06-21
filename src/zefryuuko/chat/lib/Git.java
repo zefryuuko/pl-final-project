@@ -76,9 +76,35 @@ public class Git
         String command = "git show -p origin/master";
         System.out.println(Utilities.runSystemCommand(command, fullDir));
         String[] commandOutput = Utilities.runSystemCommand(command, fullDir).split("\n");
+        String summary = "";
+        String description = "";
+
+        // Get summary
+        int currentLine = 4;
+        while (true)
+        {
+            summary += commandOutput[currentLine].replaceAll("    ", "") + "\n";
+            currentLine++;
+            if (commandOutput[currentLine].equals("    ")) break;
+        }
+        summary = summary.substring(0, summary.length() - 1);
+
+        // Get description
+        currentLine++;
+        if (commandOutput[currentLine].startsWith("    "))
+        {
+            while (true)
+            {
+                description += commandOutput[currentLine].replaceAll("    ", "") + "\n";
+                currentLine++;
+                if (commandOutput[currentLine].equals("")) break;
+            }
+        }
+        description = description.substring(0, description.length() > 0 ? description.length() - 2 : 0);
 
         output.put("author", commandOutput[1].substring(8, commandOutput[1].indexOf("<") - 1));
-        output.put("summary", commandOutput[4].replaceAll("    ", ""));
+        output.put("summary", summary);
+        output.put("description", description);
 
         return output;
     }
