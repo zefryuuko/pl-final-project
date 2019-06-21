@@ -19,7 +19,7 @@ public class RequestRouter
                 response = getRequestDataResponse((RequestData) commData, sessionID);
                 break;
             case "ChatData":
-                Main.getMessagesContainer().addMessage((ChatData) commData);
+                ServerMain.getMessagesContainer().addMessage((ChatData) commData);
                 broadcastChat((ChatData) commData);
                 break;
             case "InitHandshakeData":
@@ -37,19 +37,19 @@ public class RequestRouter
         switch(requestData.getRequest())
         {
             case "getConnectedUserData":
-                response = new ConnectedUserData(new ArrayList<String>(Main.getConnectedUsers().values()));
+                response = new ConnectedUserData(new ArrayList<String>(ServerMain.getConnectedUsers().values()));
                 break;
             case "clientDisconnect":
-                Main.getConnectedUsers().remove(sessionID);
+                ServerMain.getConnectedUsers().remove(sessionID);
                 broadcastConnectedUsers();
                 break;
             case "getServerPropertiesData":
-                boolean hasGit = Main.getRepoAddress() == null ? false : true;
-                response = new ServerPropertiesData(Main.getServerName(), Main.getServerDescription(),
-                                                    hasGit, Main.getRepoAddress());
+                boolean hasGit = ServerMain.getRepoAddress() == null ? false : true;
+                response = new ServerPropertiesData(ServerMain.getServerName(), ServerMain.getServerDescription(),
+                                                    hasGit, ServerMain.getRepoAddress());
                 break;
             case "getAllMessages":
-                response = new MessagesData(Main.getMessagesContainer().getMessages());
+                response = new MessagesData(ServerMain.getMessagesContainer().getMessages());
                 break;
         }
 
@@ -59,7 +59,7 @@ public class RequestRouter
     private static void broadcastChat(ChatData chatData)
     {
         String data = Utilities.objSerialize(chatData);
-        Main.getServer().broadcast(data);
+        ServerMain.getServer().broadcast(data);
     }
 
     private static CommData getInitHandshakeDataResponse(InitHandshakeData initHandshakeData, String sessionID)
@@ -67,12 +67,12 @@ public class RequestRouter
         CommData response = null;
         boolean isUsernameAvailable = false;
         boolean isAuthenticated = false;
-        if (!Main.getConnectedUsers().values().contains(initHandshakeData.getUsername())) isUsernameAvailable = true;
-        if (Main.getServerPassword().equals(initHandshakeData.getPassword())) isAuthenticated = true;
+        if (!ServerMain.getConnectedUsers().values().contains(initHandshakeData.getUsername())) isUsernameAvailable = true;
+        if (ServerMain.getServerPassword().equals(initHandshakeData.getPassword())) isAuthenticated = true;
         response = new InitHandshakeResponseData(isAuthenticated, isUsernameAvailable);
         if (isAuthenticated && isUsernameAvailable)
         {
-            Main.getConnectedUsers().put(sessionID, initHandshakeData.getUsername());
+            ServerMain.getConnectedUsers().put(sessionID, initHandshakeData.getUsername());
             broadcastConnectedUsers();
         }
         return response;
@@ -82,12 +82,12 @@ public class RequestRouter
     {
         ArrayList<String> connectedUsers = new ArrayList();
 
-        for (Iterator<String> itr = Main.getConnectedUsers().values().iterator(); itr.hasNext(); )
+        for (Iterator<String> itr = ServerMain.getConnectedUsers().values().iterator(); itr.hasNext(); )
         {
             connectedUsers.add(itr.next());
         }
 
         String data = Utilities.objSerialize(new ConnectedUserData(connectedUsers));
-        Main.getServer().broadcast(data);
+        ServerMain.getServer().broadcast(data);
     }
 }

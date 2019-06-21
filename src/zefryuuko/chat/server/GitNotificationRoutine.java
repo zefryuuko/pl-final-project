@@ -15,18 +15,18 @@ public class GitNotificationRoutine implements RoutineInterface
     {
         Logging logging = new Logging("GitNotificationRoutine");
         logging.log("Getting repo changes...");
-        Main.getGit().pull();
-        if (Main.getGit().checkLatestCommit())
+        ServerMain.getGit().pull();
+        if (ServerMain.getGit().checkLatestCommit())
         {
-            HashMap<String, String> changesData = Main.getGit().getLatestCommitData();
+            HashMap<String, String> changesData = ServerMain.getGit().getLatestCommitData();
             String description = changesData.get("description").equals("") ? "" : "<br><br>" + changesData.get("description");
             String message = String.format("[noescape]%s made changes to the repository.<div class='container'>%s%s</div>[/noescape]",
                                             changesData.get("author"), changesData.get("summary"), description);
             ChatData chatData = new ChatData("Git [Bot]", message);
-            Main.getServer().broadcast(Utilities.objSerialize(chatData));
+            ServerMain.getServer().broadcast(Utilities.objSerialize(chatData));
             RequestData refreshGitClient = new RequestData("refreshGitClient");
-            Main.getServer().broadcast(Utilities.objSerialize(refreshGitClient));
-            Main.getMessagesContainer().addMessage(chatData);
+            ServerMain.getServer().broadcast(Utilities.objSerialize(refreshGitClient));
+            ServerMain.getMessagesContainer().addMessage(chatData);
             logging.log("Broadcasted latest repo change.");
             return;
         }

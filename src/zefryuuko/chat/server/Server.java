@@ -79,7 +79,7 @@ public class Server extends Thread
             {
                 itr.remove();
                 this.connections.remove(sessionID);
-                Main.getConnectedUsers().remove(sessionID);
+                ServerMain.getConnectedUsers().remove(sessionID);
                 RequestRouter.broadcastConnectedUsers();
             }
         }

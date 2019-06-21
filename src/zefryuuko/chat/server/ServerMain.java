@@ -6,7 +6,7 @@ import zefryuuko.chat.lib.Utilities;
 
 import java.util.HashMap;
 
-public class Main
+public class ServerMain
 {
     private static HashMap<String, String> connectedUsers;
     private static Server server;
@@ -59,7 +59,7 @@ public class Main
 
     public static void setRepoAddress(String repoAddress)
     {
-        Main.repoAddress = repoAddress;
+        ServerMain.repoAddress = repoAddress;
     }
 
     public static String getServerName()
@@ -69,7 +69,7 @@ public class Main
 
     public static void setServerName(String serverName)
     {
-        Main.serverName = serverName;
+        ServerMain.serverName = serverName;
     }
 
     public static String getServerDescription()
@@ -79,7 +79,7 @@ public class Main
 
     public static void setServerDescription(String serverDescription)
     {
-        Main.serverDescription = serverDescription;
+        ServerMain.serverDescription = serverDescription;
     }
 
     public static MessagesContainer getMessagesContainer()
