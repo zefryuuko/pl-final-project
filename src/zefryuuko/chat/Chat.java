@@ -9,6 +9,7 @@ public class Chat
     {
         if (args.length == 0)
         {
+            System.out.println("Starting in client mode...");
             ClientMain.main(args);
         }
         else
