@@ -85,7 +85,7 @@ public class Git
         {
             summary += commandOutput[currentLine].replaceAll("    ", "") + "\n";
             currentLine++;
-            if (commandOutput[currentLine].equals("    ")) break;
+            if (commandOutput[currentLine].equals("    ") || commandOutput[currentLine].equals("")) break;
         }
         summary = summary.substring(0, summary.length() - 1);
 
