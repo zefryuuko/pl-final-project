@@ -100,7 +100,7 @@ public class Git
                 if (commandOutput[currentLine].equals("")) break;
             }
         }
-        description = description.substring(0, description.length() > 0 ? description.length() - 2 : 0);
+        description = description.substring(0, description.length() > 0 ? description.length() - 1 : 0);
 
         output.put("author", commandOutput[1].substring(8, commandOutput[1].indexOf("<") - 1));
         output.put("summary", summary);
