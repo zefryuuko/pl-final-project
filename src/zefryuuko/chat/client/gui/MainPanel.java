@@ -40,6 +40,8 @@ public class MainPanel extends JPanel
         paneOnlineUsers.setContentType("text/html");
         paneOnlineUsers.setText("<html><head><style>" + paneOnlineUsersCSS + "</style></head><body><h3 class='header'>ONLINE</h3><div class='container'></div></body></html>");
         pnlServerInfo.setPreferredSize(new Dimension(10, 45));
+        pnlServerInfo.setMaximumSize(new Dimension(10, 45));
+        pnlServerInfo.setMinimumSize(new Dimension(10, 45));
         pnlServerInfo.setBackground(new Color(48, 51, 56));
         pnlServerInfo.setLayout(new BorderLayout());
         pnlServerInfo.setBorder(new EmptyBorder(5, 15, 5, 15));
@@ -142,7 +144,7 @@ public class MainPanel extends JPanel
 
     public void refreshGit()
     {
-//        btnShowFiles.setText("Pulling...");
+        btnShowFiles.setText("Pulling...");
         btnShowFiles.setEnabled(false);
         Main.getGit().pull();
         btnShowFiles.setText("Show files");
