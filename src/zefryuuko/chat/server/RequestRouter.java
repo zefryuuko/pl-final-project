@@ -44,7 +44,7 @@ public class RequestRouter
                 broadcastConnectedUsers();
                 break;
             case "getServerPropertiesData":
-                boolean hasGit = ServerMain.getRepoAddress() == null ? false : true;
+                boolean hasGit = ServerMain.getRepoAddress().equals("") ? false : true;
                 response = new ServerPropertiesData(ServerMain.getServerName(), ServerMain.getServerDescription(),
                                                     hasGit, ServerMain.getRepoAddress());
                 break;
