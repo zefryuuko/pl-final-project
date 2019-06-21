@@ -5,7 +5,6 @@ import zefryuuko.chat.commdata.ChatData;
 import zefryuuko.chat.lib.Utilities;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import javax.swing.text.BadLocationException;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -73,7 +72,7 @@ public class FileBrowserWindow extends JFrame
         btnDiscuss.setText("Discuss selected");
         btnDiscuss.setEnabled(false);
         btnDiscuss.addActionListener(e -> btnDiscussAction());
-        lblFilePath.setText("Double click a file to view.");
+        lblFilePath.setText("Select a file to view.");
         lblFilePath.setForeground(Color.WHITE);
         txtPreview.setTextAreaBackground(new Color(44, 47, 51));
         txtPreview.setTextAreaForeground(Color.WHITE);
