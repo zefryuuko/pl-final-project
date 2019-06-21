@@ -1,6 +1,6 @@
 package zefryuuko.chat.client.gui;
 
-import zefryuuko.chat.client.Main;
+import zefryuuko.chat.client.ClientMain;
 import zefryuuko.chat.commdata.ChatData;
 import zefryuuko.chat.lib.Utilities;
 
@@ -80,10 +80,10 @@ public class MessageTextField extends JPanel
         {
             if (!txtMessage.getText().equals(""))
             {
-                ChatData chatData = new ChatData(Main.getClientUsername(), txtMessage.getText());
+                ChatData chatData = new ChatData(ClientMain.getClientUsername(), txtMessage.getText());
                 txtMessage.setText("");
                 txtMessage.setForeground(Color.WHITE);
-                Main.getClient().sendString(Utilities.objSerialize(chatData));
+                ClientMain.getClient().sendString(Utilities.objSerialize(chatData));
             }
         }
     }

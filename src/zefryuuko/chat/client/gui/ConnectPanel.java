@@ -1,6 +1,6 @@
 package zefryuuko.chat.client.gui;
 
-import zefryuuko.chat.client.Main;
+import zefryuuko.chat.client.ClientMain;
 import zefryuuko.chat.client.Client;
 import zefryuuko.chat.commdata.InitHandshakeData;
 import zefryuuko.chat.lib.Utilities;
@@ -309,12 +309,12 @@ public class ConnectPanel extends JPanel
                     }
 
                     // If client connected successfully
-                    Main.setClient(client);
-                    Main.setClientUsername(txtUsername.getText());
-                    Main.getMainWindow().setTitle(txtUsername.getText() + "@" + txtServerAddress.getText() + " - Chat");
-                    Main.getMainWindow().switchContentPane(1);
-                    Main.getMainWindow().revalidate();
-                    Main.getMainWindow().getMainPanel().loadData();
+                    ClientMain.setClient(client);
+                    ClientMain.setClientUsername(txtUsername.getText());
+                    ClientMain.getMainWindow().setTitle(txtUsername.getText() + "@" + txtServerAddress.getText() + " - Chat");
+                    ClientMain.getMainWindow().switchContentPane(1);
+                    ClientMain.getMainWindow().revalidate();
+                    ClientMain.getMainWindow().getMainPanel().loadData();
                 }
                 catch (IOException e1)
                 {

@@ -2,8 +2,6 @@ package zefryuuko.chat.client;
 
 import zefryuuko.chat.commdata.*;
 
-import java.util.ArrayList;
-
 public class RequestRouter
 {
     public static CommData getResponse(CommData commData)
@@ -15,13 +13,13 @@ public class RequestRouter
         {
             case "ConnectedUserData":
                 ConnectedUserData connectedUserData = (ConnectedUserData) commData;
-                Main.getMainWindow().getMainPanel().populateOnlineUsers(connectedUserData.getConnectedUsers());
+                ClientMain.getMainWindow().getMainPanel().populateOnlineUsers(connectedUserData.getConnectedUsers());
                 break;
             case "ServerPropertiesData":
-                Main.getMainWindow().getMainPanel().populateServerProperties((ServerPropertiesData) commData);
+                ClientMain.getMainWindow().getMainPanel().populateServerProperties((ServerPropertiesData) commData);
                 break;
             case "ChatData":
-                Main.getMainWindow().getMainPanel().addMessage((ChatData) commData);
+                ClientMain.getMainWindow().getMainPanel().addMessage((ChatData) commData);
                 break;
             case "InitHandshakeResponseData":
                 InitHandshakeResponseData initHandshakeResponseData = (InitHandshakeResponseData) commData;
@@ -30,10 +28,10 @@ public class RequestRouter
                     finalConnectionStatus = 3;
                 if (!initHandshakeResponseData.isAuthenticated())
                     finalConnectionStatus = 2;
-                Main.getMainWindow().getConnectPanel().setConnectionStatus(finalConnectionStatus);
+                ClientMain.getMainWindow().getConnectPanel().setConnectionStatus(finalConnectionStatus);
                 break;
             case "MessagesData":
-                Main.getMainWindow().getMainPanel().populateMessages(((MessagesData) commData).getMessages());
+                ClientMain.getMainWindow().getMainPanel().populateMessages(((MessagesData) commData).getMessages());
                 break;
             case "RequestData":
                 response = getRequestDataResponse((RequestData) commData);
@@ -50,7 +48,7 @@ public class RequestRouter
         switch(requestData.getRequest())
         {
             case "refreshGitClient":
-                Main.getMainWindow().getMainPanel().refreshGit();
+                ClientMain.getMainWindow().getMainPanel().refreshGit();
                 break;
         }
 

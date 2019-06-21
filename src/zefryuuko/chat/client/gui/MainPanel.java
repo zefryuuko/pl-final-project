@@ -1,7 +1,7 @@
 package zefryuuko.chat.client.gui;
 
+import zefryuuko.chat.client.ClientMain;
 import zefryuuko.chat.client.FileBrowserWindow;
-import zefryuuko.chat.client.Main;
 import zefryuuko.chat.commdata.*;
 import zefryuuko.chat.lib.Git;
 import zefryuuko.chat.lib.Utilities;
@@ -89,19 +89,19 @@ public class MainPanel extends JPanel
     public void loadData()
     {
         CommData getServerProperties = new RequestData("getServerPropertiesData");
-        Main.getClient().sendString(Utilities.objSerialize(getServerProperties));
+        ClientMain.getClient().sendString(Utilities.objSerialize(getServerProperties));
         CommData getConnectedUserData = new RequestData("getConnectedUserData");
-        Main.getClient().sendString(Utilities.objSerialize(getConnectedUserData));
+        ClientMain.getClient().sendString(Utilities.objSerialize(getConnectedUserData));
         CommData getAllMessages = new RequestData("getAllMessages");
-        Main.getClient().sendString(Utilities.objSerialize(getAllMessages));
+        ClientMain.getClient().sendString(Utilities.objSerialize(getAllMessages));
     }
 
     public void populateServerProperties(ServerPropertiesData serverPropertiesData)
     {
         lblServerName.setText(serverPropertiesData.getServerName());
         lblServerDescription.setText(serverPropertiesData.getServerDescription());
-        Main.setServerHasGit(serverPropertiesData.hasGit());
-        Main.setServerGitAddress(serverPropertiesData.getGitAddress());
+        ClientMain.setServerHasGit(serverPropertiesData.hasGit());
+        ClientMain.setServerGitAddress(serverPropertiesData.getGitAddress());
         loadGit();
         pnlServerInfo.revalidate();
     }
@@ -130,15 +130,15 @@ public class MainPanel extends JPanel
 
     private void showFiles()
     {
-        String directory = Main.getGit().getFullDir();
+        String directory = ClientMain.getGit().getFullDir();
         new FileBrowserWindow(directory);
     }
 
     private void loadGit()
     {
-        if (!Main.isServerHasGit()) return;
-        Git git = new Git(Main.getServerGitAddress());
-        Main.setGit(git);
+        if (!ClientMain.isServerHasGit()) return;
+        Git git = new Git(ClientMain.getServerGitAddress());
+        ClientMain.setGit(git);
         pnlServerInfo.add(btnShowFiles, BorderLayout.EAST);
     }
 
@@ -146,7 +146,7 @@ public class MainPanel extends JPanel
     {
         btnShowFiles.setText("Pulling...");
         btnShowFiles.setEnabled(false);
-        Main.getGit().pull();
+        ClientMain.getGit().pull();
         btnShowFiles.setText("Show files");
         btnShowFiles.setEnabled(true);
     }

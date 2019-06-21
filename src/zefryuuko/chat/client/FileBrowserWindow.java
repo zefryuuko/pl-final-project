@@ -221,8 +221,8 @@ public class FileBrowserWindow extends JFrame
             String message = String.format("[noescape]%s<div class='container'>%s</div>%s[/noescape]",
                                             discussionInfo, selectedText, discussionContent);
 
-            ChatData chatData = new ChatData(Main.getClientUsername() + " [CodeDiscuss]", message);
-            Main.getClient().sendString(Utilities.objSerialize(chatData));
+            ChatData chatData = new ChatData(ClientMain.getClientUsername() + " [CodeDiscuss]", message);
+            ClientMain.getClient().sendString(Utilities.objSerialize(chatData));
 
             JOptionPane.showMessageDialog(this, "Discussion sent.", "", JOptionPane.INFORMATION_MESSAGE);
         }

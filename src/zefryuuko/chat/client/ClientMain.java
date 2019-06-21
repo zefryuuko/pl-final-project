@@ -4,7 +4,7 @@ import zefryuuko.chat.commdata.RequestData;
 import zefryuuko.chat.lib.Git;
 import zefryuuko.chat.lib.Utilities;
 
-public class Main
+public class ClientMain
 {
     private static Client client;
     private static MainWindow mainWindow;
@@ -41,7 +41,7 @@ public class Main
 
     public static void setClient(Client client)
     {
-        Main.client = client;
+        ClientMain.client = client;
     }
 
     public static MainWindow getMainWindow()
@@ -56,7 +56,7 @@ public class Main
 
     public static void setClientUsername(String clientUsername)
     {
-        Main.clientUsername = clientUsername;
+        ClientMain.clientUsername = clientUsername;
     }
 
     public static String getServerGitAddress()
@@ -66,7 +66,7 @@ public class Main
 
     public static void setServerGitAddress(String serverGitAddress)
     {
-        Main.serverGitAddress = serverGitAddress;
+        ClientMain.serverGitAddress = serverGitAddress;
     }
 
     public static boolean isServerHasGit()
@@ -76,7 +76,7 @@ public class Main
 
     public static void setServerHasGit(boolean serverHasGit)
     {
-        Main.serverHasGit = serverHasGit;
+        ClientMain.serverHasGit = serverHasGit;
     }
 
     public static Git getGit()
@@ -86,6 +86,6 @@ public class Main
 
     public static void setGit(Git git)
     {
-        Main.git = git;
+        ClientMain.git = git;
     }
 }
