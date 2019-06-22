@@ -32,7 +32,7 @@ public class FileBrowserWindow extends JFrame
     public FileBrowserWindow(String baseDir)
     {
         this.baseDir = baseDir;
-        this.dirFromRoot = "/";
+        this.dirFromRoot = "";
         populateFileList(baseDir);
 
         // Window properties
@@ -152,11 +152,7 @@ public class FileBrowserWindow extends JFrame
             nextDirFromRoot += dirFromRootSplit[i] + "/";
 
         currentSelectedDir = nextDir.substring(0, nextDir.length() - 1);
-        if (dirFromRootSplit.length > 2)
-            dirFromRoot = nextDirFromRoot.substring(0, nextDirFromRoot.length() - 1);
-        else
-            dirFromRoot = "/";
-
+        dirFromRoot = nextDirFromRoot;
         populateFileList(currentSelectedDir);
         if (currentSelectedDir.equals(baseDir))
             btnBack.setEnabled(false);
