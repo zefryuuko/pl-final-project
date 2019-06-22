@@ -134,6 +134,11 @@ public class Utilities
         return folder.listFiles(fileNameFilter);
     }
 
+    public static boolean isGitInstalled()
+    {
+        return runSystemCommand("which git").equals("") ? false : true;
+    }
+
     public static boolean isWindows()
     {
         String OS = System.getProperty("os.name").toLowerCase();
