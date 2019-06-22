@@ -21,11 +21,20 @@ public class ServerMain
     private static Git git;
     private static Routine gitNotificationRoutine;
     private static Routine pingClientsRoutine;
+    private static boolean gitEnabled = true;
 
     public static void main(String[] args)
     {
         if (Utilities.isWindows())
+        {
             System.out.println("Detected Windows operating system. Git features will be disabled.");
+            gitEnabled = false;
+        }
+        else if (!Utilities.isGitInstalled())
+        {
+            System.out.println("Git is not detected on PATH. Git features will be disabled");
+            gitEnabled = false;
+        }
 
         Utilities.makeDir("appdata/repofiles");
         loadConfig();
@@ -37,7 +46,7 @@ public class ServerMain
         pingClientsRoutine = new Routine(new PingClientsRoutine(), 10000);
         pingClientsRoutine.start();
 
-        if (!repoAddress.equals("") && !Utilities.isWindows())
+        if (!repoAddress.equals("") && gitEnabled)
         {
             git = new Git(repoAddress);
             gitNotificationRoutine = new Routine(new GitNotificationRoutine(), 10000);
