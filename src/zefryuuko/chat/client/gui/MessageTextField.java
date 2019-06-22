@@ -29,7 +29,7 @@ public class MessageTextField extends JPanel
         txtMessage.setForeground(new Color(112, 117, 124));
         txtMessage.setBorder(null);
         txtMessage.setText("Enter a message  ");
-        txtMessage.addActionListener(new txtMessageActionListener());
+        txtMessage.addActionListener(e -> txtMessageActionPerformed(e));
         txtMessage.addFocusListener(new txtMessageFocusListener());
         txtMessage.addKeyListener(new txtMessageKeyListener());
 
@@ -73,20 +73,17 @@ public class MessageTextField extends JPanel
         }
     }
 
-    private class txtMessageActionListener implements ActionListener
+    public void txtMessageActionPerformed(ActionEvent e)
     {
-        @Override
-        public void actionPerformed(ActionEvent e)
+        if (!txtMessage.getText().equals(""))
         {
-            if (!txtMessage.getText().equals(""))
-            {
-                ChatData chatData = new ChatData(ClientMain.getClientUsername(), txtMessage.getText());
-                txtMessage.setText("");
-                txtMessage.setForeground(Color.WHITE);
-                ClientMain.getClient().sendString(Utilities.objSerialize(chatData));
-            }
+            ChatData chatData = new ChatData(ClientMain.getClientUsername(), txtMessage.getText());
+            txtMessage.setText("");
+            txtMessage.setForeground(Color.WHITE);
+            ClientMain.getClient().sendString(Utilities.objSerialize(chatData));
         }
     }
+
 
     private class txtMessageFocusListener implements FocusListener
     {
