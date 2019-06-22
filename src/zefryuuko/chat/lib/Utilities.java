@@ -133,9 +133,36 @@ public class Utilities
         };
         return folder.listFiles(fileNameFilter);
     }
+
+    public static boolean isWindows()
+    {
+        String OS = System.getProperty("os.name").toLowerCase();
+        return (OS.indexOf("win") >= 0);
+    }
+
+    public static boolean isMac()
+    {
+        String OS = System.getProperty("os.name").toLowerCase();
+        return (OS.indexOf("mac") >= 0);
+
+    }
+
+    public static boolean isUnix()
+    {
+        String OS = System.getProperty("os.name").toLowerCase();
+        return (OS.indexOf("nix") >= 0 || OS.indexOf("nux") >= 0 || OS.indexOf("aix") > 0 );
+
+    }
+
+    public static boolean isSolaris()
+    {
+        String OS = System.getProperty("os.name").toLowerCase();
+        return (OS.indexOf("sunos") >= 0);
+    }
 }
 
 // References
 // - Object-String serialization: https://stackoverflow.com/questions/134492/how-to-serialize-an-object-into-a-string
 // - Running system commands    : https://stackoverflow.com/questions/15356405/how-to-run-a-command-at-terminal-from-java-program
 // - Delete Directory           : https://stackoverflow.com/questions/20281835/how-to-delete-a-folder-with-files-using-java
+// - Operating System Detection : https://www.mkyong.com/java/how-to-detect-os-in-java-systemgetpropertyosname/
