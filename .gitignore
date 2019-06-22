@@ -27,3 +27,5 @@ hs_err_pid*
 
 # Application folder
 appdata
+
+MANIFEST.MF
