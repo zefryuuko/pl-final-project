@@ -24,6 +24,9 @@ public class ServerMain
 
     public static void main(String[] args)
     {
+        if (Utilities.isWindows())
+            System.out.println("Detected Windows operating system. Git features will be disabled.");
+
         Utilities.makeDir("appdata/repofiles");
         loadConfig();
 
@@ -34,7 +37,7 @@ public class ServerMain
         pingClientsRoutine = new Routine(new PingClientsRoutine(), 10000);
         pingClientsRoutine.start();
 
-        if (!repoAddress.equals(""))
+        if (!repoAddress.equals("") && !Utilities.isWindows())
         {
             git = new Git(repoAddress);
             gitNotificationRoutine = new Routine(new GitNotificationRoutine(), 10000);

@@ -141,9 +141,19 @@ public class MainPanel extends JPanel
     private void loadGit()
     {
         if (!ClientMain.isServerHasGit()) return;
-        Git git = new Git(ClientMain.getServerGitAddress());
-        ClientMain.setGit(git);
         pnlServerInfo.add(btnShowFiles, BorderLayout.EAST);
+        if (!Utilities.isWindows())
+        {
+            Git git = new Git(ClientMain.getServerGitAddress());
+            ClientMain.setGit(git);
+        }
+        else
+        {
+            btnShowFiles.setEnabled(false);
+            btnShowFiles.setText("Git not supported");
+            btnShowFiles.setToolTipText("Git features is currently not available on Windows.");
+            JOptionPane.showMessageDialog(this, "Git features is currently not available on Windows.", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
     }
 
     public void refreshGit()
