@@ -53,6 +53,8 @@ public class MainPanel extends JPanel
         btnShowFiles.setText("Show files");
         btnShowFiles.addActionListener(e -> showFiles());
         lblServerDescription.setForeground(Color.LIGHT_GRAY);
+        txtMessage.setEnabled(false);
+        txtMessage.setText("Loading messages...");
 
         // Panel objects
         pnlServerInfo.add(lblServerName, BorderLayout.WEST);
@@ -124,6 +126,8 @@ public class MainPanel extends JPanel
             MessageContainer messageContainer = new MessageContainer(message.getUsername(), message.getData());
             spaneMessagesContainer.addMessage(messageContainer);
         }
+        txtMessage.resetText();
+        txtMessage.setEnabled(true);
         spaneMessagesContainer.revalidate();
         spaneMessagesContainer.repaint();
     }
