@@ -16,7 +16,7 @@ A chat application written in Java with cool features! This app is made for seco
 ### Client
 #### Running a client
 To run the app as client, just open the jar file by double clicking it on your file explorer. you will be greeted with a login screen that looks like this.
-![](https://github.com/zefryuuko/pl-final-project/blob/master/documentation/client-login-window.png)
+![](https://github.com/zefryuuko/pl-final-project/blob/master/documentation/client-login-window.png?raw=true)
 You will need to enter this information to connect to the server:
 * `Host` the server address that you want to connect to.
 * `Password` the password required to the server. (optional, depends on the server)
