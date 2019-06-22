@@ -47,6 +47,21 @@ public class MessageTextField extends JPanel
         return txtMessage.getText();
     }
 
+    public void setText(String text)
+    {
+        txtMessage.setText(text);
+    }
+
+    public void resetText()
+    {
+        txtMessage.setText("Enter a message  ");
+    }
+
+    public void setEnabled(boolean b)
+    {
+        txtMessage.setEnabled(b);
+    }
+
     private class txtMessageKeyListener implements KeyListener
     {
         @Override
