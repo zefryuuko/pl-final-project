@@ -16,7 +16,7 @@ public class ServerMain
     private static String repoAddress;
     private static String serverName;
     private static String serverDescription;
-    private static int savedMessagesLimit = 20;
+    private static int savedMessagesLimit;
     private static MessagesContainer messagesContainer;
     private static Git git;
     private static Routine gitNotificationRoutine;
@@ -52,6 +52,7 @@ public class ServerMain
                 serverConfig.setProperty("server_description", "A regular chat server");
                 serverConfig.setProperty("server_password", "");
                 serverConfig.setProperty("server_git_address", "");
+                serverConfig.setProperty("max_saved_messages", "50");
                 serverConfig.store(inputStream, "Server properties");
             }
             catch (IOException e)
@@ -71,6 +72,7 @@ public class ServerMain
                 serverDescription = properties.getProperty("server_description");
                 serverPassword = properties.getProperty("server_password");
                 repoAddress = properties.getProperty("server_git_address");
+                savedMessagesLimit = Integer.parseInt(properties.getProperty("max_saved_messages"));
             }
             catch (IOException e)
             {
