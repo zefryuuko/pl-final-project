@@ -80,6 +80,16 @@ public class ServerMain
                 serverPassword = properties.getProperty("server_password");
                 repoAddress = properties.getProperty("server_git_address");
                 savedMessagesLimit = Integer.parseInt(properties.getProperty("max_saved_messages"));
+                if (serverName.equals(""))
+                {
+                    System.out.println("ERROR in server-config.properties: server_name cannot be empty.");
+                    System.exit(1);
+                }
+                if (savedMessagesLimit == 0)
+                {
+                    System.out.println("ERROR in server-config.properties: max_saved_messages must be greater than 0.");
+                    System.exit(1);
+                }
             }
             catch (IOException e)
             {
