@@ -20,6 +20,7 @@ public class ServerMain
     private static MessagesContainer messagesContainer;
     private static Git git;
     private static Routine gitNotificationRoutine;
+    private static Routine pingClientsRoutine;
 
     public static void main(String[] args)
     {
@@ -30,6 +31,9 @@ public class ServerMain
         messagesContainer = new MessagesContainer(savedMessagesLimit);
         server = new Server(5550);
         server.start();
+        pingClientsRoutine = new Routine(new PingClientsRoutine(), 10000);
+        pingClientsRoutine.start();
+
         if (!repoAddress.equals(""))
         {
             git = new Git(repoAddress);
