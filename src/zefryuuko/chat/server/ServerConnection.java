@@ -10,6 +10,9 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.SocketException;
 
+/**
+ * A class that manages connection with a single user.
+ */
 public class ServerConnection extends Thread
 {
     private Logging logging;
@@ -43,8 +46,8 @@ public class ServerConnection extends Thread
     {
         try
         {
-            dataOutputStream.writeUTF(data);
-            dataOutputStream.flush();
+            dataOutputStream.writeUTF(data);    // Send data to server
+            dataOutputStream.flush();           // Flush the data output stream.
         }
         catch (SocketException e)
         {
@@ -71,9 +74,8 @@ public class ServerConnection extends Thread
                 // Sleep for 1ms when there is no data to ease up CPU usage
                 while (dataInputStream.available() == 0) Thread.sleep(1);
 
+                // Read incoming data
                 String receivedData = dataInputStream.readUTF();
-                // TODO: add message processing methods
-//                System.out.printf("%s: %s\n", this.sessionID, receivedData);
 
                 // Get response for client request
                 CommData response = RequestRouter.getResponse((CommData) Utilities.objDeserialize(receivedData), sessionID);
@@ -83,6 +85,7 @@ public class ServerConnection extends Thread
                 }
             }
 
+            // Close streams when connection is lost
             dataInputStream.close();
             dataOutputStream.close();
             socket.close();

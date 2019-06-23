@@ -9,6 +9,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.UUID;
 
+/**
+ * A class that manages connections between multiple clients.
+ */
 public class Server extends Thread
 {
     private Logging logging;
@@ -67,10 +70,14 @@ public class Server extends Thread
         return connections;
     }
 
+    /**
+     * Broadcasts string to all connected clients
+     * @param message
+     */
     public void broadcast(String message)
     {
-        HashMap<String, ServerConnection> connections = new HashMap(this.connections);
-        for (Iterator<String> itr = connections.keySet().iterator(); itr.hasNext(); )
+        HashMap<String, ServerConnection> connections = new HashMap(this.connections);  // Duplicate HashMap to prevent concurrent modification exception
+        for (Iterator<String> itr = connections.keySet().iterator(); itr.hasNext(); )   // Loop for each connected clients
         {
             String sessionID = itr.next();
 
@@ -80,7 +87,7 @@ public class Server extends Thread
                 itr.remove();
                 this.connections.remove(sessionID);
                 ServerMain.getConnectedUsers().remove(sessionID);
-                RequestRouter.broadcastConnectedUsers();
+                RequestRouter.broadcastConnectedUsers();          // Broadcast currently connected users list
             }
         }
     }

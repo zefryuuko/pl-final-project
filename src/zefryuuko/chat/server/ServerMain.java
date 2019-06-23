@@ -8,6 +8,11 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Properties;
 
+/**
+ * ServerMain
+ * A class that stores important references that are needed at
+ * the runtime of the server.
+ */
 public class ServerMain
 {
     private static HashMap<String, String> connectedUsers;
@@ -25,6 +30,7 @@ public class ServerMain
 
     public static void main(String[] args)
     {
+        // Operating system check and git installation check
         if (Utilities.isWindows())
         {
             System.out.println("Detected Windows operating system. Git features will be disabled.");
@@ -36,6 +42,7 @@ public class ServerMain
             gitEnabled = false;
         }
 
+        // Make important directories if it is not present and loads server config.
         Utilities.makeDir("appdata/repofiles");
         loadConfig();
 
@@ -43,9 +50,12 @@ public class ServerMain
         messagesContainer = new MessagesContainer(savedMessagesLimit);
         server = new Server(5550);
         server.start();
+
+        // Ping clients every 10 seconds to clear disconnected sessions.
         pingClientsRoutine = new Routine(new PingClientsRoutine(), 10000);
         pingClientsRoutine.start();
 
+        // Enable git client if a repo address is specified and system requirement is met.
         if (!repoAddress.equals("") && gitEnabled)
         {
             git = new Git(repoAddress);
@@ -56,9 +66,10 @@ public class ServerMain
 
     private static void loadConfig()
     {
-        // Check server-config.properties
+        // Check if server-config.properties exists
         if (!Utilities.fileExists("appdata/server-config.properties"))
         {
+            // If it didn't, generate a new one.
             System.out.println("server-config.properties not found. Generating file...");
             try
             {
@@ -79,6 +90,7 @@ public class ServerMain
         }
         else
         {
+            // if it existed, read the configuration file.
             try
             {
                 InputStream inputStream = new FileInputStream(new File("appdata/server-config.properties"));
