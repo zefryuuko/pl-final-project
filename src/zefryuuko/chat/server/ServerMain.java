@@ -144,29 +144,14 @@ public class ServerMain
         return repoAddress;
     }
 
-    public static void setRepoAddress(String repoAddress)
-    {
-        ServerMain.repoAddress = repoAddress;
-    }
-
     public static String getServerName()
     {
         return serverName;
     }
 
-    public static void setServerName(String serverName)
-    {
-        ServerMain.serverName = serverName;
-    }
-
     public static String getServerDescription()
     {
         return serverDescription;
-    }
-
-    public static void setServerDescription(String serverDescription)
-    {
-        ServerMain.serverDescription = serverDescription;
     }
 
     public static MessagesContainer getMessagesContainer()
