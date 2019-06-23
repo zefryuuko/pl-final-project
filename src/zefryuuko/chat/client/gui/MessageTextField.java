@@ -88,7 +88,7 @@ public class MessageTextField extends JPanel
         }
     }
 
-    public void txtMessageActionPerformed(ActionEvent e)
+    private void txtMessageActionPerformed(ActionEvent e)
     {
         if (!txtMessage.getText().equals(""))
         {
