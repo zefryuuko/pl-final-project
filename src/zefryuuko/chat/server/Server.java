@@ -62,15 +62,6 @@ public class Server extends Thread
     }
 
     /**
-     * Gets a map of alive connections
-     * @return HashMap with sessionID as key, ServerConnection as value.
-     */
-    public HashMap<String, ServerConnection> getConnections()
-    {
-        return connections;
-    }
-
-    /**
      * Broadcasts string to all connected clients
      * @param message
      */
