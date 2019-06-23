@@ -228,5 +228,3 @@ public class FileBrowserWindow extends JFrame
         }
     }
 }
-// Resources:
-// - JTree file explorer: https://stackoverflow.com/questions/16112119/creating-dynamic-jtree-from-absolute-file-path
