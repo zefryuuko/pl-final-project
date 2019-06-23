@@ -48,7 +48,6 @@ public class ClientConnection extends Thread
 
                 // TODO: add message processing methods
                 String receivedData = dataInputStream.readUTF();
-//                System.out.println(receivedData);
 
                 CommData response = RequestRouter.getResponse((CommData) Utilities.objDeserialize(receivedData));
                 if (!response.getDataType().equals("NullResponse"))
