@@ -33,10 +33,13 @@ public class FileBrowserWindow extends JFrame
     public FileBrowserWindow(String baseDir)
     {
         this.baseDir = baseDir;
+        if (Utilities.isWindows())
+        {
+            directoryChar = "\\";
+            baseDir = baseDir.replace("/", "\\");
+        }
         this.dirFromRoot = "";
         populateFileList(baseDir);
-        if (Utilities.isWindows())
-            directoryChar = "\\";
 
         // Window properties
         this.setContentPane(pnlMain);
@@ -132,7 +135,7 @@ public class FileBrowserWindow extends JFrame
         DefaultListModel<String> defaultListModel = new DefaultListModel();
         for (File file : Utilities.listFiles(path, ""))
         {
-            String[] filePath = file.getPath().split(directoryChar);
+            String[] filePath = file.getPath().split((directoryChar == "\\") ? "\\\\" : "/");
             defaultListModel.addElement(filePath[filePath.length - 1]);
         }
         if (defaultListModel.contains(".git"))
