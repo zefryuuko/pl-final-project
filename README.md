@@ -8,7 +8,7 @@ A chat application written in Java with cool features! This app is made for seco
 * Code discussion features
 
 ## Requirements
-* macOS or Linux operating system (or Windows with limited functionality)
+* macOS, Windows or Linux operating system
 * Git CLI on PATH
 * Java Runtime Environment 8 or higher (tested on version 8)
 
