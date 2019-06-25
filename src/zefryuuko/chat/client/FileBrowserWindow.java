@@ -28,12 +28,15 @@ public class FileBrowserWindow extends JFrame
     private JButton btnDiscuss = new JButton();
     private LineNumberTextArea txtPreview = new LineNumberTextArea();
     private GridBagConstraints c = new GridBagConstraints();
+    private String directoryChar = "/";
 
     public FileBrowserWindow(String baseDir)
     {
         this.baseDir = baseDir;
         this.dirFromRoot = "";
         populateFileList(baseDir);
+        if (Utilities.isWindows())
+            directoryChar = "\\";
 
         // Window properties
         this.setContentPane(pnlMain);
@@ -129,7 +132,7 @@ public class FileBrowserWindow extends JFrame
         DefaultListModel<String> defaultListModel = new DefaultListModel();
         for (File file : Utilities.listFiles(path, ""))
         {
-            String[] filePath = file.getPath().split("/");
+            String[] filePath = file.getPath().split(directoryChar);
             defaultListModel.addElement(filePath[filePath.length - 1]);
         }
         if (defaultListModel.contains(".git"))
@@ -140,16 +143,16 @@ public class FileBrowserWindow extends JFrame
 
     private void goBack()
     {
-        String[] currentDirSplit = currentSelectedDir.split("/");
-        String[] dirFromRootSplit = dirFromRoot.split("/");
+        String[] currentDirSplit = currentSelectedDir.split(directoryChar);
+        String[] dirFromRootSplit = dirFromRoot.split(directoryChar);
         String nextDir = "";
         String nextDirFromRoot = "";
 
         for (int i = 0; i < currentDirSplit.length - 1; i++)
-            nextDir += currentDirSplit[i] + "/";
+            nextDir += currentDirSplit[i] + directoryChar;
 
         for (int i = 0; i < dirFromRootSplit.length - 1; i++)
-            nextDirFromRoot += dirFromRootSplit[i] + "/";
+            nextDirFromRoot += dirFromRootSplit[i] + directoryChar;
 
         currentSelectedDir = nextDir.substring(0, nextDir.length() - 1);
         dirFromRoot = nextDirFromRoot;
@@ -162,18 +165,18 @@ public class FileBrowserWindow extends JFrame
     {
         public void mouseClicked(MouseEvent evt)
         {
-            if (evt.getClickCount() == 2 && Utilities.dirExists(currentSelectedDir + "/" + lstFiles.getSelectedValue()))
+            if (evt.getClickCount() == 2 && Utilities.dirExists(currentSelectedDir + directoryChar + lstFiles.getSelectedValue()))
             {
-                    currentSelectedDir = currentSelectedDir + "/" + lstFiles.getSelectedValue();
-                    dirFromRoot = dirFromRoot + lstFiles.getSelectedValue() + "/";
+                    currentSelectedDir = currentSelectedDir + directoryChar + lstFiles.getSelectedValue();
+                    dirFromRoot = dirFromRoot + lstFiles.getSelectedValue() + directoryChar;
                     populateFileList(currentSelectedDir);
                     btnBack.setEnabled(true);
             }
-            else if (Utilities.fileExists(currentSelectedDir + "/" + lstFiles.getSelectedValue()))
+            else if (Utilities.fileExists(currentSelectedDir + directoryChar + lstFiles.getSelectedValue()))
             {
                 try
                 {
-                    BufferedReader bufferedReader = new BufferedReader(new FileReader(currentSelectedDir + "/" + lstFiles.getSelectedValue()));
+                    BufferedReader bufferedReader = new BufferedReader(new FileReader(currentSelectedDir + directoryChar + lstFiles.getSelectedValue()));
                     String fileContent = "";
                     String currentLine;
                     while ((currentLine = bufferedReader.readLine()) != null) fileContent += currentLine + "\n";
