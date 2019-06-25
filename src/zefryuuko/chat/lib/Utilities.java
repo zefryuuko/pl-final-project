@@ -136,7 +136,10 @@ public class Utilities
 
     public static boolean isGitInstalled()
     {
-        return runSystemCommand("which git").equals("") ? false : true;
+        if (!isWindows())
+            return runSystemCommand("which git").equals("") ? false : true;
+        else
+            return runSystemCommand("where git").equals("INFO Could not find files for the given pattern(s).\n") ? false : true;
     }
 
     public static boolean isWindows()

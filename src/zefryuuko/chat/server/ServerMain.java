@@ -30,13 +30,8 @@ public class ServerMain
 
     public static void main(String[] args)
     {
-        // Operating system check and git installation check
-        if (Utilities.isWindows())
-        {
-            System.out.println("Detected Windows operating system. Git features will be disabled.");
-            gitEnabled = false;
-        }
-        else if (!Utilities.isGitInstalled())
+        // Git installation check
+        if (!Utilities.isGitInstalled())
         {
             System.out.println("Git is not detected on PATH. Git features will be disabled");
             gitEnabled = false;
