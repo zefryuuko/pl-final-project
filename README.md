@@ -42,6 +42,7 @@ You can send links and links to images. Links to images will have a preview belo
 * Italic: `[i]Italic[/i]` *Italic*
 * Striketrough: `[s]Strikethrough[/s]` ~~Strikethrough~~
 * New line: `[br/]` (Shortcut: SHIFT + ENTER)
+
 ### Server
 #### Running a server
 To run as server, run this command in the terminal. Or make a shell script to run the server easily later on.
