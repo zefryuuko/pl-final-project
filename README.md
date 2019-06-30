@@ -32,10 +32,10 @@ When you are authenticated, you will see the main window.
 The left pane shows online users in the server. The middle pane shows the messages on the server and the field at the bottom is where you type the message you want to send. If the server you connect to has git set up, `Show files` button will appear at the top right corner.
 
 Clicking the `Show files` button will open the file explorer. Clicking on a file will show it in the text viewer.
-![](https://github.com/zefryuuko/pl-final-project/blob/master/documentation/client-file-explorer.png)
+![](https://github.com/zefryuuko/pl-final-project/blob/master/documentation/client-file-explorer.png?raw=true)
 
 To discuss a part of a text file, you need to highlight the text that you want to discuss. Then you need to enter the discussion topic that you want to send.
-![](https://github.com/zefryuuko/pl-final-project/blob/master/documentation/client-code-discussion.png)
+![](https://github.com/zefryuuko/pl-final-project/blob/master/documentation/client-code-discussion.png?raw=true)
 After clicking ok, a discussin will be sent to the server with the file location and line number shown.
 ![](https://github.com/zefryuuko/pl-final-project/blob/master/documentation/client-discussion-preview.png?raw=true)
 
