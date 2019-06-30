@@ -49,9 +49,15 @@ public class EditorSessionsWindow extends JFrame
         this.add(btnCreate, c);
     }
 
-    public void populateList()
+    public void populateList(HashMap<String, String> sessions)
     {
-
+        this.sessions = sessions;
+        DefaultListModel defaultListModel = new DefaultListModel()
+        for (String key : sessions.keySet())
+        {
+            defaultListModel.addElement(sessions.get(key));
+        }
+        lstSessions.setModel(defaultListModel);
     }
 
     private void createSession()
