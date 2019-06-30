@@ -12,6 +12,9 @@ A chat application written in Java with cool features! This app is made for seco
 * Git CLI on PATH
 * Java Runtime Environment 8 or higher (tested on version 8)
 
+## Downloads
+You can download the file in the [releases](https://github.com/zefryuuko/pl-final-project/releases) page.
+
 ## Usage
 ### Client
 #### Running a client
@@ -46,7 +49,22 @@ Description:
 * `server_password` a password used to log in to the server. (optional)
 * `server_git_address` git address that will be used on the server for notifications and code discussion feature. (optional)
 * `max_saved_messages` chat history buffer size. Changing this number to a higher value preserves more messages, but increases memory usage and user login time. Default is 50.
+
+After setting up the configuration file, re-run the server using the same command as before. You will see this output
+```
+Starting in server mode...
+[Server-5550] Server thread started.
+```
+This indicates that the server is configured properly and ready for users to connect into. You may see other text as actions are happening in the server.
 #### Stopping the server
 The server can be stopped by pressing `CTRL+C` on the terminal window.
 #### Clearing chat history
 To clear the server's chat history, stop the server and delete `saved-messages.msgcontainer` located on the `appdata` folder on your current working directory. Deleting messages when the server is still running has a chance of the file reappearing as sending a message (bot messages included) triggers the history saving method which saves all messages stored in memory.
+
+## Troubleshooting
+### Connection timed out
+The connection will time out if the server takes too long to respond. This could happen when the connection between the server and the client is slow. This could also happen if you entered the wrong server address.
+### Users not on the same network cannot connect to the server
+This happened because the port is not open to the outside network. You can fix this by port forwarding TCP at port 5550. If port forwarding is not an option, use reverse SSH or ngrok.
+### Git not detected on PATH
+This happened because git is not installed on your computer or it is not set in the system environment variables or PATH. If you don't have git installed on your computer, download it from [here](https://gitforwindows.org/) if you are using Windows. macOS should have it installed by default. To install it on linux, use your preferred package manager to install git. If you have it installed but can't use git features, Follow [this](https://superuser.com/a/284351) tutorial to add git to system path.
