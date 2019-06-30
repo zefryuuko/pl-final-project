@@ -1,2 +1,4 @@
 theme: jekyll-theme-cayman
 show_downloads: true
+title: Chat Application
+description: A chat application written in Java with cool features!
