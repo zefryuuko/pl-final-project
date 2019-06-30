@@ -27,6 +27,23 @@ You will need to enter this information to connect to the server:
 
 `Save to list` button will save the information filled on the text fields. The host must be unique to other saved information. `Remove from list` button simply removes the selected list item. If you accidentally pressed the button, just click save to list because the item you removed is autofilled when you select the item.
 
+When you are authenticated, you will see the main window.
+![](https://github.com/zefryuuko/pl-final-project/blob/master/documentation/client-main-menu.png?raw=true)
+The left pane shows online users in the server. The middle pane shows the messages on the server and the field at the bottom is where you type the message you want to send. If the server you connect to has git set up, `Show files` button will appear at the top right corner.
+
+Clicking the `Show files` button will open the file explorer. Clicking on a file will show it in the text viewer.
+![](https://github.com/zefryuuko/pl-final-project/blob/master/documentation/client-file-explorer.png)
+
+To discuss a part of a text file, you need to highlight the text that you want to discuss. Then you need to enter the discussion topic that you want to send.
+![](https://github.com/zefryuuko/pl-final-project/blob/master/documentation/client-code-discussion.png)
+After clicking ok, a discussin will be sent to the server with the file location and line number shown.
+![](https://github.com/zefryuuko/pl-final-project/blob/master/documentation/client-discussion-preview.png?raw=true)
+
+You can send links and links to images. Links to images will have a preview below the link. You can also style texts with this tags:
+* Bold: `[b]Bold[/b]` **Bold**
+* Italic: `[i]Italic[/i]` *Italic*
+* Striketrough: `[s]Strikethrough[/s]` ~~Strikethrough~~
+* New line: `[br/]` (Shortcut: SHIFT + ENTER)
 ### Server
 #### Running a server
 To run as server, run this command in the terminal. Or make a shell script to run the server easily later on.
