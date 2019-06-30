@@ -1,6 +1,7 @@
 package zefryuuko.chat.client.gui;
 
 import zefryuuko.chat.client.ClientMain;
+import zefryuuko.chat.client.EditorSessionsWindow;
 import zefryuuko.chat.client.FileBrowserWindow;
 import zefryuuko.chat.commdata.*;
 import zefryuuko.chat.lib.Git;
@@ -21,6 +22,7 @@ public class MainPanel extends JPanel
     private JLabel lblServerName = new JLabel();
     private JLabel lblServerDescription = new JLabel();
     private JButton btnShowFiles = new JButton();
+    private JButton btnShowEditors = new JButton();
     private MessagesContainer spaneMessagesContainer = new MessagesContainer();
     private MessageTextField txtMessage = new MessageTextField();
 
@@ -55,10 +57,13 @@ public class MainPanel extends JPanel
         lblServerDescription.setForeground(Color.LIGHT_GRAY);
         txtMessage.setEnabled(false);
         txtMessage.setText("Loading messages...");
+        btnShowEditors.setText("Editor sessions");
+        btnShowEditors.addActionListener(e -> new EditorSessionsWindow());
 
         // Panel objects
         pnlServerInfo.add(lblServerName, BorderLayout.WEST);
         pnlServerInfo.add(lblServerDescription, BorderLayout.SOUTH);
+        pnlServerInfo.add(btnShowEditors, BorderLayout.CENTER);
         c.gridheight = 3;
         c.gridwidth = 1;
         c.weightx = 0;
