@@ -12,6 +12,9 @@ A chat application written in Java with cool features! This app is made for seco
 * Git CLI on PATH
 * Java Runtime Environment 8 or higher (tested on version 8)
 
+## Downlaods
+You can download the file in the [releases](https://github.com/zefryuuko/pl-final-project/releases) page.
+
 ## Usage
 ### Client
 #### Running a client
