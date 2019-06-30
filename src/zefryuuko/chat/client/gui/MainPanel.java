@@ -1,7 +1,6 @@
 package zefryuuko.chat.client.gui;
 
 import zefryuuko.chat.client.ClientMain;
-import zefryuuko.chat.client.EditorSessionsWindow;
 import zefryuuko.chat.client.FileBrowserWindow;
 import zefryuuko.chat.commdata.*;
 import zefryuuko.chat.lib.Git;
@@ -24,7 +23,6 @@ public class MainPanel extends JPanel
     private JButton btnShowFiles = new JButton();
     private MessagesContainer spaneMessagesContainer = new MessagesContainer();
     private MessageTextField txtMessage = new MessageTextField();
-    private EditorSessionsWindow editorSessionsWindow;
 
     public MainPanel()
     {
