@@ -72,7 +72,7 @@ public class EditorSessionsWindow extends JFrame
                 }
                 content = content.substring(0, content.length() - 1);   // Remove trailing newline
                 TextEditorInitData textEditorInitData = new TextEditorInitData(fileName, content);
-                ClientMain.getClient().sendString(Utilities.objSerialize(content));
+                ClientMain.getClient().sendString(Utilities.objSerialize(textEditorInitData));
                 // TODO: add text editor window popup
             }
         }
