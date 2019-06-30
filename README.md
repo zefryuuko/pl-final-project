@@ -1,5 +1,5 @@
 # Chat Application
-A chat application written in Java with cool features! This app is made for second semester's final project.
+A chat application written in Java with cool features! This app is made for second semester final project.
 
 ## Features
 * Text styling
@@ -85,3 +85,5 @@ The connection will time out if the server takes too long to respond. This could
 This happened because the port is not open to the outside network. You can fix this by port forwarding TCP at port 5550. If port forwarding is not an option, use reverse SSH or ngrok.
 ### Git not detected on PATH
 This happened because git is not installed on your computer or it is not set in the system environment variables or PATH. If you don't have git installed on your computer, download it from [here](https://gitforwindows.org/) if you are using Windows. macOS should have it installed by default. To install it on linux, use your preferred package manager to install git. If you have it installed but can't use git features, Follow [this](https://superuser.com/a/284351) tutorial to add git to system path.
+### Cannot run server after modifying server config file
+Something is wrong with the configuration file. Delete it and re-run the server to generate a new one. Then try reconfiguring it.
