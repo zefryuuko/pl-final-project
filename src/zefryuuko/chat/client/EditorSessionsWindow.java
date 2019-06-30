@@ -1,5 +1,6 @@
 package zefryuuko.chat.client;
 
+import zefryuuko.chat.commdata.RequestData;
 import zefryuuko.chat.commdata.TextEditorInitData;
 import zefryuuko.chat.lib.Utilities;
 
@@ -47,6 +48,10 @@ public class EditorSessionsWindow extends JFrame
         c.weightx = c.weighty = 0;
         this.add(btnJoin, c); c.gridx++;
         this.add(btnCreate, c);
+
+        // Onlaod actions
+        RequestData requestData = new RequestData("getEditorSessions");
+        ClientMain.getClient().sendString(Utilities.objSerialize(requestData));
     }
 
     public void populateList(HashMap<String, String> sessions)
