@@ -3,6 +3,9 @@ package zefryuuko.chat.client.gui;
 import javax.swing.text.DefaultCaret;
 import javax.swing.text.JTextComponent;
 
+/**
+ * A class used to disable text selection in text areas
+ */
 public class NoTextSelectionCaret extends DefaultCaret
 {
     public NoTextSelectionCaret(JTextComponent textComponent)

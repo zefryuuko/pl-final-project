@@ -2,6 +2,9 @@ package zefryuuko.chat.lib;
 
 import java.util.HashMap;
 
+/**
+ * An interface that connects git cli with Java program
+ */
 public class Git
 {
     private Logging logging;
@@ -41,6 +44,9 @@ public class Git
         }
     }
 
+    /**
+     * Runs 'git pull' command
+     */
     public void pull()
     {
         logging.log("Pulling from remote");
@@ -53,6 +59,10 @@ public class Git
         }
     }
 
+    /**
+     * Compares the last checked commit with the current commit.
+     * @return True if changes has been made
+     */
     public boolean checkLatestCommit()
     {
         String command = "git rev-parse origin/master";
@@ -68,6 +78,10 @@ public class Git
         }
     }
 
+    /**
+     * Gets the latest commit data by running 'git show -p origin/master' command
+     * @return
+     */
     public HashMap<String, String> getLatestCommitData()
     {
         logging.log("Getting latest commit data");
@@ -109,6 +123,9 @@ public class Git
         return output;
     }
 
+    /**
+     * Clones a repository.
+     */
     private void cloneRemote()
     {
         logging.log("Cloning " + repoAddress + " to " + fullDir);
@@ -117,6 +134,10 @@ public class Git
         logging.log("Clone command ran successfully.");
     }
 
+    /**
+     * Gets full directory of the repository's working directory.
+     * @return
+     */
     public String getFullDir()
     {
         return fullDir;

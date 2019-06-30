@@ -5,6 +5,9 @@ import java.awt.*;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 
+/**
+ * A pane that stores all MessageContainers
+ */
 public class MessagesContainer extends JScrollPane
 {
     private GridBagConstraints c = new GridBagConstraints();
@@ -35,12 +38,19 @@ public class MessagesContainer extends JScrollPane
         c.fill = GridBagConstraints.BOTH;
     }
 
+    /**
+     * Adds a message into the container
+     * @param messageContainer MessageContainer to be added
+     */
     public void addMessage(MessageContainer messageContainer)
     {
         pnlContainer.add(messageContainer, c); c.gridy++;
         pnlContainer.revalidate();
     }
 
+    /**
+     * A component listener used to auto scroll to the bottom when a message arrives
+     */
     private class pnlContainerComponentListener implements ComponentListener
     {
         @Override

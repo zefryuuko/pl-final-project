@@ -11,6 +11,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.*;
 
+/**
+ * A window used for browsing files in a repository and discussing files.
+ */
 public class FileBrowserWindow extends JFrame
 {
     private final String baseDir;
@@ -129,6 +132,10 @@ public class FileBrowserWindow extends JFrame
         pnlMain.add(pnlViewer, c);
     }
 
+    /**
+     * Loads the file list
+     * @param path The path of the repository
+     */
     private void populateFileList(String path)
     {
         currentSelectedDir = path;
@@ -144,6 +151,9 @@ public class FileBrowserWindow extends JFrame
         this.lstFiles.setModel(defaultListModel);
     }
 
+    /**
+     * Goes back up one directory on the file list
+     */
     private void goBack()
     {
         String[] currentDirSplit = currentSelectedDir.split(directoryChar);
@@ -164,6 +174,9 @@ public class FileBrowserWindow extends JFrame
             btnBack.setEnabled(false);
     }
 
+    /**
+     * An action listener used to handle clicks on the file list.
+     */
     private class lstFilesMouseListener extends MouseAdapter
     {
         public void mouseClicked(MouseEvent evt)
@@ -196,6 +209,9 @@ public class FileBrowserWindow extends JFrame
         }
     }
 
+    /**
+     * btnDiscuss action function. Shows the discussion topic input.
+     */
     private void btnDiscussAction()
     {
         try

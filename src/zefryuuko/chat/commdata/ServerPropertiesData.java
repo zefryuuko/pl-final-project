@@ -1,5 +1,8 @@
 package zefryuuko.chat.commdata;
 
+/**
+ * A container used to store server properties data
+ */
 public class ServerPropertiesData extends CommData
 {
     private final String serverName;

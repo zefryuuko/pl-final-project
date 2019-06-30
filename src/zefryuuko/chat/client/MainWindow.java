@@ -5,6 +5,9 @@ import zefryuuko.chat.client.gui.*;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * The main window for the application
+ */
 public class MainWindow extends JFrame
 {
     ConnectPanel connectPanel = new ConnectPanel();
@@ -22,6 +25,10 @@ public class MainWindow extends JFrame
         this.setContentPane(connectPanel);
     }
 
+    /**
+     * Switches the window's content pane
+     * @param paneID The ID of the contentPane
+     */
     public void switchContentPane(int paneID)
     {
         switch(paneID)

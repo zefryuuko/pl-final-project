@@ -2,6 +2,9 @@ package zefryuuko.chat.commdata;
 
 import java.io.Serializable;
 
+/**
+ * A generalization of communication data that is sent from server to client and vice versa.
+ */
 public class CommData implements Serializable
 {
     private final String dataType;

@@ -1,5 +1,8 @@
 package zefryuuko.chat.lib;
 
+/**
+ * A class that handles actions that has to be done in n time.
+ */
 public class Routine extends Thread
 {
     private int interval;
@@ -34,6 +37,9 @@ public class Routine extends Thread
         }
     }
 
+    /**
+     * Stops the routine.
+     */
     public void stopRunning()
     {
         this.isRunning = false;

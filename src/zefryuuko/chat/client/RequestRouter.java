@@ -2,8 +2,16 @@ package zefryuuko.chat.client;
 
 import zefryuuko.chat.commdata.*;
 
+/**
+ * A class that routes requests from client and processes the request accordingly.
+ */
 public class RequestRouter
 {
+    /**
+     * Gets the response of the request
+     * @param commData CommData received from client
+     * @return CommData instance containing the response for the request.
+     */
     public static CommData getResponse(CommData commData)
     {
         CommData response = new CommData("NullResponse");
@@ -41,6 +49,11 @@ public class RequestRouter
         return response;
     }
 
+    /**
+     * Gets the appropriate response for a RequestData.
+     * @param requestData RequestData instance
+     * @return CommData containing the response that will be sent to the server.
+     */
     private static CommData getRequestDataResponse(RequestData requestData)
     {
         CommData response = new CommData("NullResponse");

@@ -3,6 +3,9 @@ package zefryuuko.chat.client.gui;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * A scrollable panel used as a JScrollPane viewport view allowing fixed width based on window size.
+ */
 public class ScrollablePanel extends JPanel implements Scrollable
 {
     public Dimension getPreferredScrollableViewportSize() {

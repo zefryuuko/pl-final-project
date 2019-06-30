@@ -7,6 +7,9 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
+/**
+ * A panel used to show a message to a user
+ */
 public class MessageContainer extends JPanel
 {
     private GridBagConstraints c = new GridBagConstraints();
@@ -50,6 +53,11 @@ public class MessageContainer extends JPanel
         this.add(txtMessage, c);
     }
 
+    /**
+     * Parses a username based on a predefined filter
+     * @param username The username that will be checked
+     * @return Parsed username
+     */
     private String parseUsername(String username)
     {
         String output = username;
@@ -58,6 +66,11 @@ public class MessageContainer extends JPanel
         return output;
     }
 
+    /**
+     * Generates a flair/tag based on a predefined filter on the username.
+     * @param username The username that will be checked
+     * @return A JPanel containing the flair to be shown next to the username
+     */
     private JPanel generateFlair(String username)
     {
         JPanel pnlFlair = new JPanel();
@@ -90,6 +103,11 @@ public class MessageContainer extends JPanel
         return pnlFlair;
     }
 
+    /**
+     * Parses rich text features
+     * @param message
+     * @return
+     */
     private String processRichText(String message)
     {
         // Escape symbols used by HTML
@@ -108,7 +126,7 @@ public class MessageContainer extends JPanel
         String[] tokenizedMessage = message.split(" ");
 
 
-
+        // Check for text styling tags
         for (int i = 0; i < tokenizedMessage.length; i++)
         {
             String token = tokenizedMessage[i];
@@ -136,6 +154,11 @@ public class MessageContainer extends JPanel
         return output.substring(1);
     }
 
+    /**
+     * Checks if a string is an URL
+     * @param text String to check
+     * @return True if the string checked is an URL
+     */
     private boolean isURL(String text)
     {
         text = text.toLowerCase();
@@ -143,6 +166,11 @@ public class MessageContainer extends JPanel
         return false;
     }
 
+    /**
+     * Checks if a string is an image URL
+     * @param text String to check
+     * @return True if the string checked is an URL pointing to an image
+     */
     private boolean isImageURL(String text)
     {
         text = text.toLowerCase();
@@ -154,6 +182,9 @@ public class MessageContainer extends JPanel
         return false;
     }
 
+    /**
+     * A hyperlink listener that handles hyperlink clicks on the message.
+     */
     private class txtMessageHyperlinkListener implements HyperlinkListener
     {
         @Override

@@ -1,5 +1,8 @@
 package zefryuuko.chat.commdata;
 
+/**
+ * A container that stores chat data.
+ */
 public class ChatData extends CommData
 {
     private final String username;

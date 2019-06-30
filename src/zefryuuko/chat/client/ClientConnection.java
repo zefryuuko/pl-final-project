@@ -8,6 +8,9 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
+/**
+ * A class that handles a single connection to the server
+ */
 public class ClientConnection extends Thread
 {
     private Socket socket;
@@ -22,6 +25,10 @@ public class ClientConnection extends Thread
         this.client = client;
     }
 
+    /**
+     * Sends a string to the server
+     * @param data The string that will be sent
+     */
     public void sendString(String data)
     {
         try
@@ -35,6 +42,9 @@ public class ClientConnection extends Thread
         }
     }
 
+    /**
+     * Server-client connection thread run method
+     */
     public void run()
     {
         try
@@ -64,6 +74,9 @@ public class ClientConnection extends Thread
         }
     }
 
+    /**
+     * Closes the connection
+     */
     public void close()
     {
         try

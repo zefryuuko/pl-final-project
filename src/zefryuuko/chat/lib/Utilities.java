@@ -4,8 +4,16 @@ import java.io.*;
 import java.nio.file.Paths;
 import java.util.Base64;
 
+/**
+ * A class that is used for commonly used methods
+ */
 public class Utilities
 {
+    /**
+     * Deserializes object from an encoded bytes in base64
+     * @param s Base64 encoded serialized object
+     * @return Deserialized object
+     */
     public static Object objDeserialize(String s)
     {
         try
@@ -24,6 +32,11 @@ public class Utilities
         }
     }
 
+    /**
+     * Serializes object to bytes encoded in base64
+     * @param obj Object to be serialized
+     * @return Bytes encoded in base64
+     */
     public static String objSerialize(Serializable obj)
     {
         try
@@ -42,6 +55,11 @@ public class Utilities
         }
     }
 
+    /**
+     * Runs a command in the terminal
+     * @param command Command to run
+     * @return The output of the command
+     */
     public static String runSystemCommand(String command)
     {
         try
@@ -63,6 +81,12 @@ public class Utilities
         }
     }
 
+    /**
+     * Runs a command in the terminal with the specified working directory
+     * @param command Command to run
+     * @param workingDir Directory the command will run on
+     * @return The output of the command
+     */
     public static String runSystemCommand(String command, String workingDir)
     {
         try
@@ -87,30 +111,55 @@ public class Utilities
         }
     }
 
+    /**
+     * Checks if a file exists
+     * @param path File path
+     * @return True if file exists
+     */
     public static boolean fileExists(String path)
     {
         File file = new File(path);
         return file.exists() && file.isFile();
     }
 
+    /**
+     * Deletes a file
+     * @param path File path
+     * @return True if deleted successfully
+     */
     public static boolean deleteFile(String path)
     {
         File file = new File(path);
         return file.delete();
     }
 
+    /**
+     * Checks if a directory exists
+     * @param path Directory path
+     * @return True if directory exists
+     */
     public static boolean dirExists(String path)
     {
         if (!Paths.get(path).toFile().isDirectory()) return false;
         return true;
     }
 
+    /**
+     * Creates a directory at the specified path
+     * @param path Directory path
+     * @return True if directory is created successfully
+     */
     public static boolean makeDir(String path)
     {
         File dir = new File(path);
         return dir.mkdirs();
     }
 
+    /**
+     * Deletes a directory with all of it's content
+     * @param path Directory path
+     * @return True if directory is deleted
+     */
     public static boolean deleteDir(String path)
     {
         if (!dirExists(path)) return false;
@@ -124,6 +173,12 @@ public class Utilities
         return true;
     }
 
+    /**
+     * Gets a list of files and directories in a directory.
+     * @param directory Directory path
+     * @param extension File extension filter
+     * @return Array of files
+     */
     public static File[] listFiles(String directory, String extension)
     {
         File folder = new File(directory);
@@ -134,6 +189,10 @@ public class Utilities
         return folder.listFiles(fileNameFilter);
     }
 
+    /**
+     * Checks if git is on system PATH
+     * @return
+     */
     public static boolean isGitInstalled()
     {
         if (!isWindows())
@@ -142,12 +201,20 @@ public class Utilities
             return runSystemCommand("where git").equals("INFO Could not find files for the given pattern(s).\n") ? false : true;
     }
 
+    /**
+     * Checks if operating system is Windows
+     * @return True if operating system is Windows
+     */
     public static boolean isWindows()
     {
         String OS = System.getProperty("os.name").toLowerCase();
         return (OS.indexOf("win") >= 0);
     }
 
+    /**
+     * Checks if operating system is macOS
+     * @return True if operating system is macOS
+     */
     public static boolean isMac()
     {
         String OS = System.getProperty("os.name").toLowerCase();
@@ -155,6 +222,10 @@ public class Utilities
 
     }
 
+    /**
+     * Checks if operating system is based on UNIX
+     * @return True if operating system is based on UNIX
+     */
     public static boolean isUnix()
     {
         String OS = System.getProperty("os.name").toLowerCase();
@@ -162,6 +233,10 @@ public class Utilities
 
     }
 
+    /**
+     * Check if operating system is Solaris
+     * @return True if operating system is Solaris
+     */
     public static boolean isSolaris()
     {
         String OS = System.getProperty("os.name").toLowerCase();

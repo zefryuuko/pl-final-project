@@ -88,6 +88,9 @@ public class MainPanel extends JPanel
         this.add(txtMessage, c);
     }
 
+    /**
+     * Requests data required for main panel
+     */
     public void loadData()
     {
         CommData getServerProperties = new RequestData("getServerPropertiesData");
@@ -98,6 +101,10 @@ public class MainPanel extends JPanel
         ClientMain.getClient().sendString(Utilities.objSerialize(getAllMessages));
     }
 
+    /**
+     * Fills in the server properties information
+     * @param serverPropertiesData
+     */
     public void populateServerProperties(ServerPropertiesData serverPropertiesData)
     {
         lblServerName.setText(serverPropertiesData.getServerName());
@@ -108,6 +115,10 @@ public class MainPanel extends JPanel
         pnlServerInfo.revalidate();
     }
 
+    /**
+     * Fills in the online users list
+     * @param users ArrayList containing username/s of connected users
+     */
     public void populateOnlineUsers(ArrayList<String> users)
     {
         String html = "<html><head><style>" + paneOnlineUsersCSS + "</style></head><body><h3 class='header'>ONLINE</h3><div class='container'>";
@@ -119,6 +130,10 @@ public class MainPanel extends JPanel
         paneOnlineUsers.setText(html);
     }
 
+    /**
+     * Fills in the messages pane. Used for loading chat history.
+     * @param messages LinkedList containing messages data.
+     */
     public void populateMessages(LinkedList<ChatData> messages)
     {
         for (ChatData message : messages)
@@ -132,12 +147,18 @@ public class MainPanel extends JPanel
         spaneMessagesContainer.repaint();
     }
 
+    /**
+     * Shows the file browser window
+     */
     private void showFiles()
     {
         String directory = ClientMain.getGit().getFullDir();
         new FileBrowserWindow(directory);
     }
 
+    /**
+     * Loads git client on the chat client instance
+     */
     private void loadGit()
     {
         if (!ClientMain.isServerHasGit()) return;
@@ -156,6 +177,9 @@ public class MainPanel extends JPanel
         }
     }
 
+    /**
+     * Pulls data from git repository
+     */
     public void refreshGit()
     {
         btnShowFiles.setText("Pulling...");
@@ -165,6 +189,10 @@ public class MainPanel extends JPanel
         btnShowFiles.setEnabled(true);
     }
 
+    /**
+     * Adds a message to the messages pane
+     * @param chatData Message data that will be added
+     */
     public void addMessage(ChatData chatData)
     {
         MessageContainer messageContainer = new MessageContainer(chatData.getUsername(), chatData.getData());

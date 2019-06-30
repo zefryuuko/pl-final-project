@@ -8,6 +8,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * A text field used for entering the text
+ */
 public class MessageTextField extends JPanel
 {
     private GridBagConstraints c = new GridBagConstraints();
@@ -62,6 +65,9 @@ public class MessageTextField extends JPanel
         txtMessage.setEnabled(b);
     }
 
+    /**
+     * A key listener used for adding newline on shift + enter
+     */
     private class txtMessageKeyListener implements KeyListener
     {
         @Override
@@ -88,6 +94,10 @@ public class MessageTextField extends JPanel
         }
     }
 
+    /**
+     * txtMessage ActionPerformed method. Sends a message to the server when user pressed enter.
+     * @param e
+     */
     private void txtMessageActionPerformed(ActionEvent e)
     {
         if (!txtMessage.getText().equals(""))
@@ -100,6 +110,9 @@ public class MessageTextField extends JPanel
     }
 
 
+    /**
+     * Handles placeholder text on the text field
+     */
     private class txtMessageFocusListener implements FocusListener
     {
         @Override
@@ -117,7 +130,8 @@ public class MessageTextField extends JPanel
         {
             if (txtMessage.getText().isEmpty())
             {
-                txtMessage.setText("Enter a message  ");
+                txtMessage.setText("Enter a message  ");        // The string contains special character to prevent users from entering
+                                                                // "Enter a message" and triggering the placeholder effect.
                 txtMessage.setForeground(new Color(112, 117, 124));
             }
         }

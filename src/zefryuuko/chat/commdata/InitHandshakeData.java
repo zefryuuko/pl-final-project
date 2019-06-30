@@ -1,5 +1,8 @@
 package zefryuuko.chat.commdata;
 
+/**
+ * A container that stores information for login
+ */
 public class InitHandshakeData extends CommData
 {
     private final String username;

@@ -15,6 +15,10 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Properties;
 
+/**
+ * A panel used for authentication.
+ * Shown on app startup
+ */
 public class ConnectPanel extends JPanel
 {
     private GridBagConstraints c = new GridBagConstraints();
@@ -122,6 +126,10 @@ public class ConnectPanel extends JPanel
         this.add(pnlConnectionInfo, c);
     }
 
+    /**
+     * Checks if the TextField input is valid.
+     * @return True if valid
+     */
     private boolean isValidInput()
     {
         if (txtServerAddress.getText().equals(""))
@@ -142,6 +150,9 @@ public class ConnectPanel extends JPanel
         return true;
     }
 
+    /**
+     * Creates a table containing saved login info to be shown to user.
+     */
     private void generateTable()
     {
         savedLoginData = getSavedLogins();
@@ -164,6 +175,9 @@ public class ConnectPanel extends JPanel
         spaneSavedLogin.revalidate();
     }
 
+    /**
+     * Saves login information for the current TextFields' content
+     */
     private void saveLoginInfo()
     {
         if (!isValidInput()) return;
@@ -195,6 +209,9 @@ public class ConnectPanel extends JPanel
         }
     }
 
+    /**
+     * Removes selected login info from the list.
+     */
     private void removeLoginInfo()
     {
         int index = tblSavedLogin.getSelectedRow();
@@ -209,6 +226,10 @@ public class ConnectPanel extends JPanel
             JOptionPane.showMessageDialog(null, "Failed to delete login info.\nDetails: " + pathToRemove + " not found.", "Error", JOptionPane.ERROR_MESSAGE);
     }
 
+    /**
+     * Gets saved login information stored in appdata/saved-logins folder
+     * @return A 2D array that stores the login information saved.
+     */
     private String[][] getSavedLogins()
     {
         String[][] output = {};
@@ -247,6 +268,11 @@ public class ConnectPanel extends JPanel
         return output;
     }
 
+    /**
+     * Converts login information data for the table by removing password field
+     * @param data The login information data obtained from getSavedLogins
+     * @return A 2D array that stores the login information without the password
+     */
     private String[][] getSavedLoginTableData(String[][] data)
     {
         String[][] newData = new String[data.length][2];
@@ -259,6 +285,9 @@ public class ConnectPanel extends JPanel
         return newData;
     }
 
+    /**
+     * An action listener for btnConnect click event.
+     */
     private class btnConnectActionlistener  implements ActionListener
     {
         @Override
@@ -273,6 +302,9 @@ public class ConnectPanel extends JPanel
             }
         }
 
+        /**
+         * A thread to prevent GUI locking when connection is being made.
+         */
         private class connectThread extends Thread
         {
             public void run()
@@ -330,6 +362,10 @@ public class ConnectPanel extends JPanel
         }
     }
 
+    /**
+     * An action listener for the saved login table. This will autofill the TextFields with the selected list item
+     * data.
+     */
     private class tblSavedLoginListSelectionListener implements ListSelectionListener
     {
         @Override
@@ -345,6 +381,10 @@ public class ConnectPanel extends JPanel
         }
     }
 
+    /**
+     * Sets the connection status
+     * @param connectionStatus connection status
+     */
     public void setConnectionStatus(int connectionStatus)
     {
         this.connectionStatus = connectionStatus;

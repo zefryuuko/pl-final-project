@@ -7,6 +7,9 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+ * A JTextArea with line numbers
+ */
 public class LineNumberTextArea extends JPanel
 {
     private JTextArea textArea = new JTextArea();
@@ -44,11 +47,19 @@ public class LineNumberTextArea extends JPanel
         this.add(textAreaScrollPane, BorderLayout.CENTER);
     }
 
+    /**
+     * Gets the number of lines in a string
+     * @param text The text to check
+     * @return the number of lines
+     */
     private int getLineCount(String text)
     {
         return (int) text.chars().filter(x -> x == '\n').count() + 1;
     }
 
+    /**
+     * A method for updating the line count on the line numbers
+     */
     private void updateLineCount()
     {
         int lineCount = getLineCount(textArea.getText());
@@ -60,6 +71,9 @@ public class LineNumberTextArea extends JPanel
         lineNumbers.revalidate();
     }
 
+    /**
+     * Scrolls the line number text area when the main text area is moved
+     */
     private void updateLineCountScroll()
     {
         int scrollPosition = textAreaScrollPane.getVerticalScrollBar().getValue();
@@ -67,6 +81,9 @@ public class LineNumberTextArea extends JPanel
         lineNumbersScrollPane.revalidate();
     }
 
+    /**
+     * A key listener used to handle key presses on the main text area
+     */
     private class textAreaKeyListener implements KeyListener
     {
         @Override

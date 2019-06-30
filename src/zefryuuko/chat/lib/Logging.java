@@ -1,5 +1,8 @@
 package zefryuuko.chat.lib;
 
+/**
+ * A class used for logging messages in the terminal.
+ */
 public class Logging
 {
     private final String moduleName;

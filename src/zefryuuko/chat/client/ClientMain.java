@@ -4,6 +4,9 @@ import zefryuuko.chat.commdata.RequestData;
 import zefryuuko.chat.lib.Git;
 import zefryuuko.chat.lib.Utilities;
 
+/**
+ * The main class that is responsible for the client
+ */
 public class ClientMain
 {
     private static Client client;
@@ -17,8 +20,6 @@ public class ClientMain
     {
         mainWindow = new MainWindow();
         mainWindow.setVisible(true);
-//        client = new Client("localhost", 5550);
-//        client.run();
 
         Runtime.getRuntime().addShutdownHook(new Thread()
         {

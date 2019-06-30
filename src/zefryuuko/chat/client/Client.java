@@ -6,6 +6,10 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
+/**
+ * Client class
+ * Handles client-server connections
+ */
 public class Client
 {
     private final String host;
@@ -29,17 +33,28 @@ public class Client
             logging.log("Client connected to server");
     }
 
+    /**
+     * Sends a string to the server
+     * @param data The string that will be sent
+     */
     public void sendString(String data)
     {
         clientConnection.sendString(data);
     }
 
+    /**
+     * Stops a client from running
+     */
     public void stop()
     {
         clientConnection.setRunning(false);
         logging.log("Client thread stopped");
     }
 
+    /**
+     * Checks if the client is running.
+     * @return isRunning field value
+     */
     public boolean isRunning()
     {
         return clientConnection.isRunning();

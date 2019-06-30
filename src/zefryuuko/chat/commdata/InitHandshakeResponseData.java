@@ -1,5 +1,8 @@
 package zefryuuko.chat.commdata;
 
+/**
+ * A container that is used to stored authentication status
+ */
 public class InitHandshakeResponseData extends CommData
 {
     private final boolean isAuthenticated;
